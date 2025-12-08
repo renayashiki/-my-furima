@@ -1,6 +1,10 @@
-@extends('layouts.guest', ['css_path' => 'auth/register.css'])
+@extends('layouts.guest')
 
 @section('title', '会員登録')
+
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/auth/register.css') }}">
+@endsection
 
 @section('content')
 <div class="card">

@@ -1,22 +1,24 @@
-@extends('layouts.guest', ['css_path' => 'auth/login.css'])
+@extends('layouts.guest')
 
 @section('title', 'ログイン')
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
+@endsection
+
 @section('content')
-<div class="card">
-    <h2 class="card-title">ログイン</h2>
+<div class="auth-content">
+    <h2 class="content-title">ログイン</h2>
 
     <form method="POST" action="{{ route('login.store') }}" class="login-form">
         @csrf
 
         <div class="form-group">
-            <label for="email" class="form-label">メールアドレス</label>
-            <input type="email" id="email" name="email" class="form-input" required autofocus>
+            <input type="email" id="email" name="email" class="form-input" placeholder="メールアドレス" required autofocus>
         </div>
 
         <div class="form-group">
-            <label for="password" class="form-label">パスワード</label>
-            <input type="password" id="password" name="password" class="form-input" required>
+            <input type="password" id="password" name="password" class="form-input" placeholder="パスワード" required>
         </div>
 
         <button type="submit" class="submit-btn">ログインする</button>

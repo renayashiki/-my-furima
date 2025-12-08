@@ -1,83 +1,165 @@
-/* auth/login.css */
-/* 共通ヘッダーのスタイルを適用するために、common.cssの内容を想定して記述 */
+/* auth/login.css - 最終調整版 (指定パーセント適用 & フォーム崩れ解消) */
 
-/* メインコンテンツの配置を中央に */
-.main {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    align-items: flex-start; /* 画面上部寄りに配置 */
+/* 1. ベースリセットとヘッダー */
+body {
+    background-color: rgba(255, 255, 255, 1); 
+    font-family: Inter, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* フォームの % 配置の基準として最低でもビューポートの高さを使う */
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
 }
 
-.card {
-    background-color: white;
-    padding: 40px 60px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.auth-header {
+    background-color: rgba(0, 0, 0, 1);
+    height: 82px; 
     width: 100%;
-    max-width: 600px;
 }
 
-.card-title {
-    text-align: center;
+.auth-header-inner {
+    width: 100%;
+    max-width: 1515px; 
+    margin: 0 auto; 
+    height: 100%;
+    display: flex;
+    align-items: center; 
+    /* ロゴの左余白 25px は padding-left で確保 */
+    /* padding-left: 5px;  */
+    box-sizing: border-box;
+}
+
+.logo-svg {
+    width: 370px; 
+    height: 36px;
+    display: block;
+    max-width: 90%; 
+}
+
+/* 2. メインコンテンツエリアの配置 */
+.main {
+    flex-grow: 1;
+    display: flex;
+    position: relative; 
+    justify-content: flex-start; /* 左寄せに戻す */
+    align-items: flex-start; 
+    padding: 0; 
+    width: 100%;
+}
+
+/* 3. フォームコンテナのサイズ感調整と配置 */
+.auth-content {
+    background-color: transparent; 
+    box-shadow: none; 
+    padding: 0; 
+    
+    /* 🚨 修正点: 横幅を 45.0% に戻す */
+    width: 45.0%; 
+    
+    /* 🚨 修正点: 配置を % で再設定 */
+    position: absolute;
+    
+    /* 🚨 修正点: top を 18.49vh に設定 (上余白の指示値) */
+    top: 14vh; 
+    
+    /* 🚨 修正点: left を 27.6% に設定 (左余白の指示値) */
+    left: 27.6%;
+    
+    /* 最小高さを 62.12vh に設定 (高さの指示値) */
+    min-height: 62.12vh;
+    
+    /* フォームが大きくなりすぎないように max-width 680px を維持 */
+    max-width: 680px;
+    
+    /* 中央寄せの transform は削除 */
+    transform: none; 
+}
+
+/* 4. タイトル */
+.content-title {
     font-size: 28px;
     font-weight: bold;
-    margin-bottom: 30px;
+    text-align: center;
+    margin-bottom: 40px; 
     padding-bottom: 10px;
-    border-bottom: 3px solid black;
-    display: inline-block;
-    width: 100%;
+    border-bottom: none; 
+}
+
+/* 5. 入力欄とボタンの横幅統一 */
+.login-form {
+    width: 100%; 
 }
 
 .form-group {
-    margin-bottom: 25px;
+    margin-bottom: 30px; 
 }
 
-/* ラベル (見本画像に合わせて非表示) */
-.form-label {
-    visibility: hidden;
-}
-
-/* 入力欄のCSS情報 (会員登録画面と共通) */
 .form-input {
-    width: 100%;
-    padding: 10px 15px;
+    width: 100%; 
+    /* 入力欄の高さは px で維持 */
+    height: 57px; 
+    padding: 0 15px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px; 
     box-sizing: border-box;
-    font-family: Inter, sans-serif;
+    
+    font-size: 24px; 
     font-weight: 700;
-    font-size: 24px;
-    line-height: 1.0;
-    letter-spacing: 0;
+    line-height: 57px; 
 }
 
-/* ログインボタン (赤) */
+/* 6. ボタンの再現 */
 .submit-btn {
-    width: 100%;
-    padding: 15px;
+    width: 100%; 
+    height: 65px;
+    padding: 0;
+    margin-top: 40px; 
+    
     background: rgba(255, 85, 85, 1);
-    color: white;
+    color: #ffffff; 
     border: none;
     border-radius: 5px;
-    font-size: 20px;
-    font-weight: bold;
     cursor: pointer;
-    margin-top: 20px;
+    
+    font-size: 26px; 
+    font-weight: 700;
+    line-height: 65px; 
+    text-align: center;
 }
 
-/* 会員登録はこちら (青文字) */
+/* 7. 会員登録リンクの再現 */
 .register-link-area {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 30px; 
 }
 
 .register-link {
+    display: inline-block;
+    height: 53px; 
+    line-height: 53px; 
     color: rgba(0, 115, 204, 1); 
     text-decoration: none;
-    font-family: Inter, sans-serif;
+    
+    font-size: 20px; 
     font-weight: 400;
-    font-size: 20px;
-    line-height: 1.0;
-    letter-spacing: 0;
-    display: inline-block;
+}
+
+/* --- レスポンシブ調整 --- */
+@media (max-width: 1150px) {
+    /* 画面幅が狭い場合、固定位置指定を解除し、中央寄せに戻す */
+    .auth-content {
+        position: static;
+        margin: 50px auto; 
+        width: 80%; /* 狭い画面では幅を広げる */
+        max-width: 680px;
+        min-height: auto;
+        top: auto; 
+        left: auto;
+    }
+    .main {
+        justify-content: center;
+        padding-top: 50px;
+        align-items: flex-start; 
+    }
 }

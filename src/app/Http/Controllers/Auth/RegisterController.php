@@ -10,6 +10,7 @@ class RegisterController extends Controller
     // 会員登録フォームの表示
     public function showRegistrationForm()
     {
+
         return view('auth.register');
     }
 

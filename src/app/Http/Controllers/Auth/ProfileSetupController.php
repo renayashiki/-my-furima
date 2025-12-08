@@ -9,6 +9,7 @@ class ProfileSetupController extends Controller
     // 初回プロフィール設定画面
     public function index()
     {
+
         return view('auth.profile-setup');
     }
 
