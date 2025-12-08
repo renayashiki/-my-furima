@@ -1,0 +1,90 @@
+/* auth/register.css */
+/* 共通ヘッダーのスタイルを適用するために、common.cssの内容を想定して記述 */
+/* (実際はインポートするか、全CSSに共通スタイルを含める) */
+
+/* メインコンテンツの配置を中央に */
+.main {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    align-items: flex-start; /* 画面上部寄りに配置 */
+}
+
+.card {
+    background-color: white;
+    padding: 40px 60px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px; /* 見本画像に合わせて幅を調整 */
+}
+
+.card-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid black;
+    display: inline-block;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+/* ラベル (見本画像には表示されていないが、アクセシビリティのため残す) */
+.form-label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    visibility: hidden; /* 見本画像に合わせて非表示 */
+}
+
+/* 入力欄のCSS情報 */
+.form-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    /* 指定されたフォント情報 */
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-size: 24px; /* 忠実に再現 */
+    line-height: 1.0;
+    letter-spacing: 0;
+}
+
+/* 登録ボタン (赤) */
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 85, 85, 1);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* ログインはこちら (青文字) */
+.login-link-area {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-link {
+    /* 青文字の指定に基づき、背景ではなく文字色を青に */
+    color: rgba(0, 115, 204, 1); 
+    text-decoration: none;
+    /* 指定されたフォント情報 */
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.0;
+    letter-spacing: 0;
+    display: inline-block;
+}

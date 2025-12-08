@@ -1,0 +1,72 @@
+/* auth/email-verify.css */
+
+/* メインコンテンツを画面中央に配置 */
+.main {
+    padding-top: 100px;
+    align-items: flex-start;
+}
+
+.message-container {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+}
+
+/* メッセージテキスト */
+.verification-message {
+    /* 指定されたフォント情報に最も近いスタイル */
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.5; /* 行間を調整 */
+    letter-spacing: 0;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* 認証はこちらボタン風リンク */
+.verify-link-button {
+    /* 見本画像の幅と高さのヒントを使用 */
+    display: inline-block;
+    width: 257px; 
+    height: 69px;
+    line-height: 69px; /* テキストを垂直中央に */
+    
+    /* スタイル指定 */
+    background: rgba(217, 217, 217, 1); /* 薄いグレーの背景 */
+    color: rgba(0, 0, 0, 1); /* 黒文字 */
+    border: 1px solid black; /* 黒枠 (border-width: 1px) */
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    
+    /* フォント指定 */
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* 認証メールを再送する リンク */
+.resend-form {
+    display: block;
+    text-align: center;
+}
+
+.resend-link {
+    /* 青文字の指定に基づき、リンク風のボタンに */
+    background: transparent; /* 背景なし */
+    border: none;
+    color: rgba(0, 115, 204, 1); 
+    text-decoration: underline; /* 見本画像にはないが、リンクであることを示すため */
+    cursor: pointer;
+    
+    /* フォント指定 */
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.0;
+    letter-spacing: 0;
+}
