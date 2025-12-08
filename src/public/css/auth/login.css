@@ -14,19 +14,20 @@ body {
 
 .auth-header {
     background-color: rgba(0, 0, 0, 1);
-    height: 82px; 
+    height: 60px; 
     width: 100%;
 }
 
 .auth-header-inner {
     width: 100%;
-    max-width: 1515px; 
-    margin: 0 auto; 
+    max-width: 1515px;
+    margin: 0 auto;
     height: 100%;
     display: flex;
-    align-items: center; 
+    align-items: center;
     /* ロゴの左余白 25px は padding-left で確保 */
     /* padding-left: 5px;  */
+    
     box-sizing: border-box;
 }
 
@@ -61,7 +62,7 @@ body {
     position: absolute;
     
     /* 🚨 修正点: top を 18.49vh に設定 (上余白の指示値) */
-    top: 14vh; 
+    top: 5vh; 
     
     /* 🚨 修正点: left を 27.6% に設定 (左余白の指示値) */
     left: 27.6%;
