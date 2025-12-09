@@ -1,5 +1,5 @@
 /* ================================
-   auth/login.css - Figma寄せ完成版
+   auth/login.css - フォーム専用
    ================================ */
 
 /* ---------- 1. ベース ---------- */
@@ -10,47 +10,15 @@
 }
 
 body {
-    background: #fff;
-    font-family: Inter, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+   background: #fff;
+   font-family: Inter, sans-serif;
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
 }
 
-/* ---------- 2. ヘッダー ---------- */
-.auth-header {
-    background: #000;
-    width: 100%;
-    height: 82px; /* Figma に合わせる */
-    display: flex;
-    justify-content: flex-start;
-    padding-left: 0;
-}
-
-.auth-header-inner {
-    width: 1515px;  /* Figma 固定幅 */
-    height: 82px;
-    margin: 0 auto;
-    position: relative;  /* ロゴを absolute で配置する基準 */
-}
-
-/* Figma の left:25px を正確に再現 */
-.header-logo {
-    position: absolute;
-    /* left: 25px;    */
-     /* Figma の値 */
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0; /* 念のため余白を消す */
-}
-
-/* SVG ロゴサイズ（Figma） */
-.logo-svg {
-    width: 370px;
-    height: 36px;
-}
-
+/* ---------- 2. ▼ヘッダーは削除済み ---------- */
+/* guest-common.css に完全移行済み */
 
 /* ---------- 3. メイン ---------- */
 .main {
@@ -64,14 +32,13 @@ body {
 /* ---------- 4. ログインフォーム ---------- */
 .auth-content {
     position: absolute;
-    top: 8vh; /* Figma 22px → 比率で補正 */
-    left: 26.8%; /* Figma 27.6% を微調整 */
+    top: 8vh; /* 現在画面と同じ見た目で維持 */
+    left: 26.8%; 
     width: 45%;
     max-width: 680px;
     min-height: 62vh;
 }
 
-/* タイトル */
 .content-title {
     font-size: 32px;
     font-weight: 700;
@@ -79,7 +46,6 @@ body {
     margin-bottom: 40px;
 }
 
-/* ---------- 入力フォーム ---------- */
 .login-form {
     width: 100%;
 }
@@ -98,7 +64,6 @@ body {
     font-weight: 600;
 }
 
-/* ---------- 送信ボタン ---------- */
 .submit-btn {
     width: 100%;
     height: 65px;
@@ -127,8 +92,6 @@ body {
 /* ================================
    レスポンシブ設定
    ================================ */
-
-/* --- 中型画面（～1150px） --- */
 @media (max-width: 1150px) {
     .auth-content {
         position: static;
@@ -142,55 +105,15 @@ body {
     }
 }
 
-/* --- タブレット（～768px） --- */
 @media (max-width: 768px) {
-    .auth-header {
-        height: 64px;
-    }
-    .logo-svg {
-        width: 260px;
-    }
-
     .auth-content {
         width: 85%;
     }
-
-    .content-title {
-        font-size: 26px;
-    }
-
-    .form-input {
-        height: 50px;
-        font-size: 18px;
-    }
-
-    .submit-btn {
-        height: 55px;
-        font-size: 22px;
-    }
 }
 
-/* --- スマホ（～480px） --- */
 @media (max-width: 480px) {
-    .logo-svg {
-        width: 220px;
-    }
     .auth-content {
         width: 90%;
         margin-top: 40px;
-    }
-    .content-title {
-        font-size: 22px;
-    }
-    .form-input {
-        height: 46px;
-        font-size: 16px;
-    }
-    .submit-btn {
-        height: 48px;
-        font-size: 20px;
-    }
-    .register-link {
-        font-size: 16px;
     }
 }

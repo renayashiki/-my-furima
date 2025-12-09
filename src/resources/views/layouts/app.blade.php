@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'フリマアプリ')</title>
-    <link rel="stylesheet" href="{{ asset('css/common/guest-common.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/common/app-common.css') }}">
+
+    @yield('styles')
 </head>
 <body>
     @include('components.header-app')
