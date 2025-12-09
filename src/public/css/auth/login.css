@@ -10,11 +10,12 @@
 }
 
 body {
-   background: #fff;
-   font-family: Inter, sans-serif;
-   min-height: 100vh;
-   display: flex;
-   flex-direction: column;
+    background: rgba(255, 255, 255, 1);
+    font-family: Inter, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
 }
 
 /* ---------- 2. ▼ヘッダーは削除済み ---------- */
@@ -25,25 +26,39 @@ body {
     flex-grow: 1;
     width: 100%;
     display: flex;
-    justify-content: flex-start;
-    position: relative;
+    justify-content: center;
+    align-items: center;
+    position: static;
 }
 
 /* ---------- 4. ログインフォーム ---------- */
 .auth-content {
-    position: absolute;
-    top: 8vh; /* 現在画面と同じ見た目で維持 */
-    left: 26.8%; 
+    position: static;
+    transform: scale(0.85) translateY(0%); 
+    transform-origin: top center; 
+    /* ★追加: 縮小したフォームをヘッダーの近くに引き上げる */
+    /* ヘッダー下(50px) + margin-bottom(50px) の影響を相殺 */
+    margin: auto;
+    margin-top: -50px;
     width: 45%;
     max-width: 680px;
-    min-height: 62vh;
+    min-height: 48vh;
+    padding: 60px 40px 70px 40px; /* 上右下左のパディングを追加 */
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .content-title {
     font-size: 32px;
     font-weight: 700;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: -30px;
+}
+
+.form-label {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 5px; /* 入力欄との間の余白 */
+    text-align: left;
 }
 
 .login-form {
@@ -51,7 +66,7 @@ body {
 }
 
 .form-group {
-    margin-bottom: 28px;
+    margin-bottom: 5px;
 }
 
 .form-input {
@@ -62,6 +77,8 @@ body {
     border-radius: 5px;
     font-size: 22px;
     font-weight: 600;
+    margin: 0 auto;
+    display: block;
 }
 
 .submit-btn {
@@ -69,18 +86,20 @@ body {
     height: 65px;
     background: #FF5555;
     border: none;
-    border-radius: 6px;
+    border-radius: 5px;
     color: #fff;
     font-size: 26px;
     font-weight: 700;
-    margin-top: 35px;
+    margin-top: 45px;
     cursor: pointer;
+    margin: 45px auto 0 auto;
+    display: block;
 }
 
 /* ---------- 会員登録リンク ---------- */
 .register-link-area {
     text-align: center;
-    margin-top: 25px;
+    margin-top: 0px;
 }
 
 .register-link {

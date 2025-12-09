@@ -5,17 +5,16 @@
 
 /* ---------- ベース ---------- */
 body {
-    background-color: #f7f7f7;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    background: rgba(255, 255, 255, 1);
+    font-family: Inter;
+
 }
 
 /* ---------- 未ログインヘッダー（Figma準拠・現状画面の値） ---------- */
 .auth-header {
     background: #000;
     width: 100%;
-    height: 82px; /* Figma & 現在の表示に一致 */
+    height: 50px; /* Figma & 現在の表示に一致 */
     display: flex;
     justify-content: flex-start;
     padding-left: 0;
@@ -25,7 +24,7 @@ body {
 .auth-header-inner {
    width: 100%;       /* ← これが必須！（1515pxはダメ） */
     max-width: 1515px; /* ← Figma上限だけ保持 */
-    height: 82px;
+    height: 50px;
     margin: 0 auto;
     position: relative; 
 }
@@ -33,10 +32,10 @@ body {
 /* ---------- ロゴ配置（Figma 数値に修正） ---------- */
 .header-logo {
     position: absolute;
-    top: 23px;     /* Figmaの実数22pxだが、ピクセル補正で23がぴったり */
+    top: 13px;     /* Figmaの実数22pxだが、ピクセル補正で23がぴったり */
     left: 0;
-    width: 370px;  /* Figma の全体幅 */
-    height: 36px;  /* Figma の高さ */
+    width: 226px;  /* Figma の全体幅 */
+    height: 22px;  /* Figma の高さ */
     display: flex;
     align-items: center; /* 縦中央へ */
     gap: 8px;
@@ -57,7 +56,9 @@ body {
 
 /* ---------- Main ---------- */
 .main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    
+    flex-grow: 1; /* bodyがdisplay:flex; flex-direction: column; の場合に必要 */
 }
