@@ -4,6 +4,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/common/guest-common.css') }}">
 @endsection
 
 @section('content')

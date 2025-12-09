@@ -1,166 +1,196 @@
-/* auth/login.css - 最終調整版 (指定パーセント適用 & フォーム崩れ解消) */
+/* ================================
+   auth/login.css - Figma寄せ完成版
+   ================================ */
 
-/* 1. ベースリセットとヘッダー */
-body {
-    background-color: rgba(255, 255, 255, 1); 
-    font-family: Inter, sans-serif;
+/* ---------- 1. ベース ---------- */
+* {
     margin: 0;
     padding: 0;
-    /* フォームの % 配置の基準として最低でもビューポートの高さを使う */
-    min-height: 100vh; 
+    box-sizing: border-box;
+}
+
+body {
+    background: #fff;
+    font-family: Inter, sans-serif;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+/* ---------- 2. ヘッダー ---------- */
 .auth-header {
-    background-color: rgba(0, 0, 0, 1);
-    height: 60px; 
+    background: #000;
     width: 100%;
+    height: 82px; /* Figma に合わせる */
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 0;
 }
 
 .auth-header-inner {
-    width: 100%;
-    max-width: 1515px;
+    width: 1515px;  /* Figma 固定幅 */
+    height: 82px;
     margin: 0 auto;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    /* ロゴの左余白 25px は padding-left で確保 */
-    /* padding-left: 5px;  */
-    
-    box-sizing: border-box;
+    position: relative;  /* ロゴを absolute で配置する基準 */
 }
 
+/* Figma の left:25px を正確に再現 */
+.header-logo {
+    position: absolute;
+    /* left: 25px;    */
+     /* Figma の値 */
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0; /* 念のため余白を消す */
+}
+
+/* SVG ロゴサイズ（Figma） */
 .logo-svg {
-    width: 370px; 
+    width: 370px;
     height: 36px;
-    display: block;
-    max-width: 90%; 
 }
 
-/* 2. メインコンテンツエリアの配置 */
+
+/* ---------- 3. メイン ---------- */
 .main {
     flex-grow: 1;
-    display: flex;
-    position: relative; 
-    justify-content: flex-start; /* 左寄せに戻す */
-    align-items: flex-start; 
-    padding: 0; 
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
 }
 
-/* 3. フォームコンテナのサイズ感調整と配置 */
+/* ---------- 4. ログインフォーム ---------- */
 .auth-content {
-    background-color: transparent; 
-    box-shadow: none; 
-    padding: 0; 
-    
-    /* 🚨 修正点: 横幅を 45.0% に戻す */
-    width: 45.0%; 
-    
-    /* 🚨 修正点: 配置を % で再設定 */
     position: absolute;
-    
-    /* 🚨 修正点: top を 18.49vh に設定 (上余白の指示値) */
-    top: 5vh; 
-    
-    /* 🚨 修正点: left を 27.6% に設定 (左余白の指示値) */
-    left: 27.6%;
-    
-    /* 最小高さを 62.12vh に設定 (高さの指示値) */
-    min-height: 62.12vh;
-    
-    /* フォームが大きくなりすぎないように max-width 680px を維持 */
+    top: 8vh; /* Figma 22px → 比率で補正 */
+    left: 26.8%; /* Figma 27.6% を微調整 */
+    width: 45%;
     max-width: 680px;
-    
-    /* 中央寄せの transform は削除 */
-    transform: none; 
+    min-height: 62vh;
 }
 
-/* 4. タイトル */
+/* タイトル */
 .content-title {
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 32px;
+    font-weight: 700;
     text-align: center;
-    margin-bottom: 40px; 
-    padding-bottom: 10px;
-    border-bottom: none; 
+    margin-bottom: 40px;
 }
 
-/* 5. 入力欄とボタンの横幅統一 */
+/* ---------- 入力フォーム ---------- */
 .login-form {
-    width: 100%; 
+    width: 100%;
 }
 
 .form-group {
-    margin-bottom: 30px; 
+    margin-bottom: 28px;
 }
 
 .form-input {
-    width: 100%; 
-    /* 入力欄の高さは px で維持 */
-    height: 57px; 
-    padding: 0 15px;
+    width: 100%;
+    height: 57px;
+    padding: 0 18px;
     border: 1px solid #ccc;
-    border-radius: 4px; 
-    box-sizing: border-box;
-    
-    font-size: 24px; 
-    font-weight: 700;
-    line-height: 57px; 
-}
-
-/* 6. ボタンの再現 */
-.submit-btn {
-    width: 100%; 
-    height: 65px;
-    padding: 0;
-    margin-top: 40px; 
-    
-    background: rgba(255, 85, 85, 1);
-    color: #ffffff; 
-    border: none;
     border-radius: 5px;
-    cursor: pointer;
-    
-    font-size: 26px; 
-    font-weight: 700;
-    line-height: 65px; 
-    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
 }
 
-/* 7. 会員登録リンクの再現 */
+/* ---------- 送信ボタン ---------- */
+.submit-btn {
+    width: 100%;
+    height: 65px;
+    background: #FF5555;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 26px;
+    font-weight: 700;
+    margin-top: 35px;
+    cursor: pointer;
+}
+
+/* ---------- 会員登録リンク ---------- */
 .register-link-area {
     text-align: center;
-    margin-top: 30px; 
+    margin-top: 25px;
 }
 
 .register-link {
-    display: inline-block;
-    height: 53px; 
-    line-height: 53px; 
-    color: rgba(0, 115, 204, 1); 
+    font-size: 20px;
+    color: #0073CC;
     text-decoration: none;
-    
-    font-size: 20px; 
-    font-weight: 400;
 }
 
-/* --- レスポンシブ調整 --- */
+/* ================================
+   レスポンシブ設定
+   ================================ */
+
+/* --- 中型画面（～1150px） --- */
 @media (max-width: 1150px) {
-    /* 画面幅が狭い場合、固定位置指定を解除し、中央寄せに戻す */
     .auth-content {
         position: static;
-        margin: 50px auto; 
-        width: 80%; /* 狭い画面では幅を広げる */
-        max-width: 680px;
-        min-height: auto;
-        top: auto; 
-        left: auto;
+        width: 75%;
+        margin: 60px auto 0 auto;
+        max-width: 500px;
     }
     .main {
         justify-content: center;
-        padding-top: 50px;
-        align-items: flex-start; 
+        padding-top: 40px;
+    }
+}
+
+/* --- タブレット（～768px） --- */
+@media (max-width: 768px) {
+    .auth-header {
+        height: 64px;
+    }
+    .logo-svg {
+        width: 260px;
+    }
+
+    .auth-content {
+        width: 85%;
+    }
+
+    .content-title {
+        font-size: 26px;
+    }
+
+    .form-input {
+        height: 50px;
+        font-size: 18px;
+    }
+
+    .submit-btn {
+        height: 55px;
+        font-size: 22px;
+    }
+}
+
+/* --- スマホ（～480px） --- */
+@media (max-width: 480px) {
+    .logo-svg {
+        width: 220px;
+    }
+    .auth-content {
+        width: 90%;
+        margin-top: 40px;
+    }
+    .content-title {
+        font-size: 22px;
+    }
+    .form-input {
+        height: 46px;
+        font-size: 16px;
+    }
+    .submit-btn {
+        height: 48px;
+        font-size: 20px;
+    }
+    .register-link {
+        font-size: 16px;
     }
 }
