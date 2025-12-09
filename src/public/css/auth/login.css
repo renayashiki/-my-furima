@@ -117,3 +117,15 @@ body {
         margin-top: 40px;
     }
 }
+/* フォームの max-width (500px) より狭い画面になったときの対策 */
+@media (max-width: 520px) { /* 500pxより少し余裕を持たせて発火 */
+    .auth-content {
+        /* 幅の制限を解除し、画面幅に合わせて伸縮できるようにする */
+        max-width: 100%; 
+        
+        /* 画面いっぱいに広げ、左右にパディングを設けて余白を作る */
+        width: 100%;
+        padding: 0 20px; /* 左右に 20px の余白を設ける */
+        box-sizing: border-box; /* paddingを含めて幅 100% となるようにする */
+    }
+}
