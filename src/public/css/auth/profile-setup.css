@@ -1,16 +1,21 @@
 /* auth/profile-setup.css */
 
 /* --------------------------------------
-   全体レイアウトと縮小調整
+   全体レイアウトと縦長設定
    -------------------------------------- */
+/* ★修正: scale-wrapperの概念は不要になりました。元に戻します。★ */
 .profile-setup-container {
     width: 100%;
-    /* ★修正: 見本のように「横幅が短い縦長の長方形」に見せるため、最大幅を大幅に縮小 (680px -> 500px) ★ */
+    /* 縦長レイアウトを再現するため、最大幅を維持 */
     max-width: 500px; 
-    /* 左寄せは維持 */
-    margin: 0 auto; 
+    /* 上寄せと中央寄せを兼ねる */
+    margin: 5px auto 80px auto; 
     padding: 0 20px; 
     box-sizing: border-box;
+
+    /* transform は完全に排除 */
+    transform: none;
+    transform-origin: initial;
 }
 
 /* --------------------------------------
@@ -20,8 +25,10 @@
     text-align: center;
     font-size: 28px;
     font-weight: bold;
-    margin-top: 10px; 
-    margin-bottom: 20px; 
+    /* 全体を上に詰める */
+    margin-top: 5px; 
+    /* タイトルと画像エリアの間の余白を調整 */
+    margin-bottom: 30px; 
 }
 
 /* --------------------------------------
@@ -45,7 +52,6 @@
     border-radius: 50%; 
     flex-shrink: 0;
     margin: 0; 
-    /* 丸枠が消えないように、再度displayプロパティを確実に追加 */
     display: flex; 
     justify-content: center;
     align-items: center;
@@ -55,7 +61,6 @@
    画像を選択するボタン
    -------------------------------------- */
 .file-input-hidden {
-    /* 標準のファイル選択要素を完全に非表示にする */
     display: none;
 }
 
@@ -80,9 +85,10 @@
    下部全幅エリア (ユーザー名以下)
    -------------------------------------- */
 
-/* ユーザー名入力欄 */
+/* ユーザー名入力欄 (画像エリアと入力欄の間の余白を調整) */
 .form-group.user-name-group {
-    margin-top: 25px; 
+    /* 画像エリアと入力欄の間を広げる (見本の再現) */
+    margin-top: 50px; 
     margin-bottom: 20px; 
 }
 
@@ -125,34 +131,9 @@
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 5px; 
-    /* 見本通りの余白を確保 (50px) */
-    margin-bottom: 50px; 
-}
-
-
-/* ★★★ 修正②: コンテンツ全体の縮小率の再調整 ★★★ */
-/* コンテナの幅を狭くしたため、縮小率をさらに抑えます */
-@media (max-height: 850px) {
-    .profile-setup-container {
-        /* 画面が狭い場合に縮小。0.95 (95%) */
-        transform: scale(0.95);
-        transform-origin: top center; 
-    }
-}
-@media (max-height: 750px) {
-    /* 画面の高さが750px以下の場合、さらに縮小 */
-    .profile-setup-container {
-        transform: scale(0.90);
-        transform-origin: top center;
-    }
-}
-/* 画面の高さが十分にある場合は、縮小を行わない */
-@media (min-height: 851px) {
-    .profile-setup-container {
-        transform: scale(1);
-        transform-origin: top center;
-    }
+    margin-top: 10px; 
+    /* 見本のような下部の余白を確保しつつ、profile-setup-containerのmargin-bottomで吸収 */
+    margin-bottom: 0; 
 }
 
 
@@ -160,11 +141,10 @@
    メディアクエリ (レスポンシブ対応: スマホ表示を想定)
    -------------------------------------- */
 @media (max-width: 600px) {
-    /* スマホ表示では、縦長レイアウトを維持しつつ、縮小を解除 */
+    /* スマホ表示では、全体幅に広げる */
     .profile-setup-container {
         max-width: 100%;
-        transform: scale(1);
-        transform-origin: top center;
+        margin: 5px auto 80px auto; /* 縦長設定を解除 */
     }
     
     .side-by-side-container {
