@@ -1,20 +1,14 @@
 /* ================================
-   guest-common.css
-   未ログイン画面の共通スタイル（ヘッダー含む）
-   ================================ */
+    guest-common.css
+    ================================ */
 
-/* ---------- ベース ---------- */
-body {
-    background: rgba(255, 255, 255, 1);
-    font-family: Inter;
-
-}
+/* ... (ベース部分は省略) ... */
 
 /* ---------- 未ログインヘッダー（Figma準拠・現状画面の値） ---------- */
 .auth-header {
     background: #000;
     width: 100%;
-    height: 50px; /* Figma & 現在の表示に一致 */
+    height: 60px; /* 黒背景の高さは60pxを維持 */
     display: flex;
     justify-content: flex-start;
     padding-left: 0;
@@ -22,9 +16,9 @@ body {
 }
 
 .auth-header-inner {
-   width: 100%;       /* ← これが必須！（1515pxはダメ） */
-    max-width: 1515px; /* ← Figma上限だけ保持 */
-    height: 50px;
+    width: 100%; 
+    max-width: 1515px; 
+    height: 60px; /* auth-headerの高さ60pxに合わせる */
     margin: 0 auto;
     position: relative; 
 }
@@ -32,10 +26,14 @@ body {
 /* ---------- ロゴ配置（Figma 数値に修正） ---------- */
 .header-logo {
     position: absolute;
-    top: 13px;     /* Figmaの実数22pxだが、ピクセル補正で23がぴったり */
+    
+    /* ロゴがヘッダーの枠ギリギリになるよう top を調整 */
+    top: 5px; /* 60pxのヘッダー高さに対し、上下5pxの余白 */
     left: 0;
-    width: 226px;  /* Figma の全体幅 */
-    height: 22px;  /* Figma の高さ */
+    
+    width: 250px; /* 適切な幅に調整 */
+    height: 45px; /* ★ ロゴの高さを50pxに拡大し、枠ギリギリに見せる ★ */
+    
     display: flex;
     align-items: center; /* 縦中央へ */
     gap: 8px;
@@ -45,20 +43,16 @@ body {
 
 /* ---------- SVGロゴの大きさ（Figma 100% 準拠） ---------- */
 .logo-icon {
-    width: 62px;
-    height: 36px;
+    /* ★ 親要素 header-logo の高さ50pxに合わせ、縦いっぱいに拡大 ★ */
+    width: auto;
+    height: 100%; 
 }
 
 .logo-text {
-    width: 301px;
-    height: 35px;
+    /* ★ 親要素 header-logo の高さ50pxに合わせ、縦いっぱいに拡大 ★ */
+    width: auto;
+    height: 100%; 
 }
 
 /* ---------- Main ---------- */
-.main {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    
-    flex-grow: 1; /* bodyがdisplay:flex; flex-direction: column; の場合に必要 */
-}
+/* ... (変更なし) ... */

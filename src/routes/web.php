@@ -60,14 +60,14 @@ Route::post('/email/resend', [EmailVerificationController::class, 'resend'])
 // ---------------------------------------------
 // 🌈 メール認証後だけ行ける 初回プロフィール設定
 // ---------------------------------------------
-Route::middleware(['auth', 'verified'])->group(function () {
+// Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get('/profile/setup', [ProfileSetupController::class, 'index'])
-        ->name('profile.setup');
+Route::get('/profile/setup', [ProfileSetupController::class, 'index'])
+    ->name('profile.setup');
 
-    Route::post('/profile/setup', [ProfileSetupController::class, 'store'])
-        ->name('profile.setup.store');
-});
+Route::post('/profile/setup', [ProfileSetupController::class, 'store'])
+    ->name('profile.setup.store');
+// });
 
 // ---------------------------------------------
 // 🔐 ログイン後（verified 必須）
