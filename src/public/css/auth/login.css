@@ -56,8 +56,10 @@ body {
     display: flex;
     flex-direction: column;
     
+    align-items: flex-start; 
+    
     /* 項目間の余白 (メールアドレスとパスワードの間) を維持 */
-    margin-bottom: 8px; 
+    margin-bottom: 2px; 
 }
 
 /* 最初のフォームグループ（メールアドレス）とタイトル間の余白を調整 */
@@ -72,15 +74,13 @@ body {
     text-align: left;
     
     display: block; 
-    line-height: 1; 
     
-    /* マージンとパディングをリセット */
+    /* ★最終修正1: line-heightを極端に小さくし、テキストを上へ、かつ余白をなくす */
+    line-height: 0.9; 
+    
+    /* ★最終修正2: マージンとパディングを完全にゼロにし、強制的に密着 */
     margin: 0; 
     padding: 0;
-    
-    /* ★最終修正: 項目名と入力欄の間の統一された余白を作る */
-    /* 全てのラベルの下側に2pxの隙間を統一して作成 */
-    margin-bottom: 2px;
 }
 
 
@@ -91,7 +91,13 @@ body {
     /* マージンとパディングをリセット */
     margin: 0; 
     padding: 0 18px; 
+    
     display: block; 
+    
+    /* ★最終修正3: 入力欄の上端にわずかなパディングを追加し、ラベルとの間に隙間を作る */
+    /* ラベルと入力欄の間に1pxの隙間を作る役割を持たせる */
+    padding-top: 1px; 
+    
     border: 1px solid rgba(95, 95, 95, 1);
     border-radius: 4px;
     font-size: 22px;
@@ -110,7 +116,7 @@ body {
     cursor: pointer;
     
     /* ユーザー要望: 40pxの上マージンの見た目を維持 */
-    margin-top: 40px;
+    margin-top: 55px;
     
     /* 会員登録リンクを引き込むためのネガティブマージンを維持 */
     margin-bottom: -18px; 
