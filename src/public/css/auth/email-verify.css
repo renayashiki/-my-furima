@@ -1,52 +1,67 @@
 /* auth/email-verify.css */
 
-/* メインコンテンツを画面中央に配置 */
+/* メインコンテンツ全体 (中央配置) */
 .main {
-    padding-top: 100px;
-    align-items: flex-start;
+    display: block; 
+    text-align: center; 
+    padding-top: 0; 
 }
 
 .message-container {
-    width: 100%;
-    max-width: 800px;
+    /* ★ ヘッダーからの距離をFigma値に合わせて219pxに設定（維持）★ */
+    margin-top: 180px; 
+    
+    /* 以下、デザイン設定は維持 */
+    background: transparent;
+    color: rgba(0, 0, 0, 1); 
+    max-width: 720px;
+    width: 90%; 
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
     text-align: center;
+    padding: 0; 
 }
 
 /* メッセージテキスト */
 .verification-message {
-    /* 指定されたフォント情報に最も近いスタイル */
+    /* ★ 縮小: 24px -> 22px ★ */
     font-family: Inter, sans-serif;
     font-weight: 700;
-    font-size: 24px;
-    line-height: 1.5; /* 行間を調整 */
+    font-size: 22px; 
+    line-height: 1.0; 
     letter-spacing: 0;
     text-align: center;
-    margin-bottom: 40px;
+    
+    color: rgba(0, 0, 0, 1);
+    
+    /* 認証はこちらボタンとの余白をわずかに調整 (62px → 50px) */
+    margin-bottom: 50px; 
+    margin-top: 0;
 }
 
 /* 認証はこちらボタン風リンク */
 .verify-link-button {
-    /* 見本画像の幅と高さのヒントを使用 */
+    /* ★ 縮小: width: 257px -> 230px, height: 69px -> 60px, font: 24px -> 22px ★ */
     display: inline-block;
-    width: 257px; 
-    height: 69px;
-    line-height: 69px; /* テキストを垂直中央に */
+    width: 230px; /* 縮小 */
+    height: 60px; /* 縮小 */
+    line-height: 60px; 
     
-    /* スタイル指定 */
-    background: rgba(217, 217, 217, 1); /* 薄いグレーの背景 */
-    color: rgba(0, 0, 0, 1); /* 黒文字 */
-    border: 1px solid black; /* 黒枠 (border-width: 1px) */
+    background: rgba(217, 217, 217, 1); 
+    color: rgba(0, 0, 0, 1); 
+    border: 1px solid rgba(0, 0, 0, 1); 
     border-radius: 10px;
     text-decoration: none;
-    cursor: pointer;
     
-    /* フォント指定 */
     font-family: Inter, sans-serif;
     font-weight: 700;
-    font-size: 24px;
-    letter-spacing: 0;
-    text-align: center;
-    margin-bottom: 40px;
+    font-size: 22px; /* 縮小 */
+    
+    /* 認証メールを再送するリンクまでの余白をわずかに調整 (52px → 40px) */
+    margin-bottom: 40px; 
+    
+    max-width: 90%;
 }
 
 /* 認証メールを再送する リンク */
@@ -56,17 +71,49 @@
 }
 
 .resend-link {
-    /* 青文字の指定に基づき、リンク風のボタンに */
-    background: transparent; /* 背景なし */
-    border: none;
-    color: rgba(0, 115, 204, 1); 
-    text-decoration: underline; /* 見本画像にはないが、リンクであることを示すため */
-    cursor: pointer;
-    
-    /* フォント指定 */
+    /* ★ 縮小: 20px -> 18px ★ */
     font-family: Inter, sans-serif;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 18px; /* 縮小 */
+    
+    background: transparent; 
+    color: rgba(0, 115, 204, 1); 
+    border: none;
+    text-decoration: none; 
+    cursor: pointer;
+    
+    display: inline-block; 
+    padding: 0;
     line-height: 1.0;
     letter-spacing: 0;
+}
+
+/* ---------------------------------------------------- */
+/* レスポンシブ (モバイル表示時の調整) */
+/* ---------------------------------------------------- */
+@media screen and (max-width: 768px) {
+    .message-container {
+        max-width: 95%; 
+        margin-top: 100px; /* スマホでは上部余白を減らす */
+    }
+    
+    /* 全体の文字サイズの再縮小 */
+    .verification-message {
+        font-size: 16px; 
+        margin-bottom: 30px; 
+    }
+    
+    /* ボタンとリンクも再縮小 */
+    .verify-link-button {
+        width: 70%; /* より画面幅に依存させる */
+        max-width: 230px;
+        font-size: 16px; 
+        height: 50px;
+        line-height: 50px;
+        margin-bottom: 20px; 
+    }
+    
+    .resend-link {
+        font-size: 14px; 
+    }
 }
