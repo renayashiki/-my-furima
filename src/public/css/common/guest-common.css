@@ -12,7 +12,7 @@
     display: flex;
     justify-content: flex-start;
     padding-left: 0;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .auth-header-inner {
@@ -54,5 +54,3 @@
     height: 100%; 
 }
 
-/* ---------- Main ---------- */
-/* ... (変更なし) ... */

@@ -27,7 +27,7 @@ body {
     transform-origin: top center; 
     
     /* フォーム全体の位置調整: 突き出しがない -50px を維持 */
-    margin: -50px auto 0 auto; 
+    margin: -20px auto 0 auto; 
     
     /* 横幅: フォームの最大幅を拡張 */
     width: 60%; 
