@@ -1,6 +1,6 @@
 /* ================================
-   auth/login.css - フォーム専用
-   ================================ */
+auth/login.css - フォーム専用
+================================ */
 
 /* ---------- 1. ベース ---------- */
 * {
@@ -15,35 +15,26 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-y: hidden;
-}
-
-/* ---------- 2. ▼ヘッダーは削除済み ---------- */
-/* guest-common.css に完全移行済み */
-
-/* ---------- 3. メイン ---------- */
-.main {
-    flex-grow: 1;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: static;
+    overflow-y: hidden; 
 }
 
 /* ---------- 4. ログインフォーム ---------- */
 .auth-content {
-    position: static;
-    transform: scale(0.85) translateY(0%); 
+    position: static; 
+    top: initial; 
+    
+    transform: scale(0.70); 
     transform-origin: top center; 
-    /* ★追加: 縮小したフォームをヘッダーの近くに引き上げる */
-    /* ヘッダー下(50px) + margin-bottom(50px) の影響を相殺 */
-    margin: auto;
-    margin-top: -50px;
-    width: 45%;
-    max-width: 680px;
-    min-height: 48vh;
-    padding: 60px 40px 70px 40px; /* 上右下左のパディングを追加 */
+    
+    /* フォーム全体の位置調整: 突き出しがない -50px を維持 */
+    margin: -50px auto 0 auto; 
+    
+    /* 横幅: フォームの最大幅を拡張 */
+    width: 45%; 
+    max-width: 850px; 
+    
+    min-height: auto;
+    padding: 60px 40px 70px 40px; 
     background-color: rgba(255, 255, 255, 1);
 }
 
@@ -51,34 +42,60 @@ body {
     font-size: 32px;
     font-weight: 700;
     text-align: center;
-    margin-bottom: -30px;
+    line-height: 1; 
+    margin-bottom: -10px; 
 }
 
-.form-label {
-    font-size: 24px;
-    font-weight: 500;
-    margin-bottom: 5px; /* 入力欄との間の余白 */
-    text-align: left;
-}
-
+/* フォームの親要素 */
 .login-form {
     width: 100%;
 }
 
+/* フォームグループ (ラベルと入力欄のペア) */
 .form-group {
-    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    
+    /* 項目間の余白 (メールアドレスとパスワードの間) を維持 */
+    margin-bottom: 8px; 
 }
+
+/* 最初のフォームグループ（メールアドレス）とタイトル間の余白を調整 */
+.login-form > .form-group:first-child {
+    margin-top: 20px; 
+}
+
+
+.form-label {
+    font-size: 24px;
+    font-weight: 500;
+    text-align: left;
+    
+    display: block; 
+    line-height: 1; 
+    
+    /* マージンとパディングをリセット */
+    margin: 0; 
+    padding: 0;
+    
+    /* ★最終修正: 項目名と入力欄の間の統一された余白を作る */
+    /* 全てのラベルの下側に2pxの隙間を統一して作成 */
+    margin-bottom: 2px;
+}
+
 
 .form-input {
     width: 100%;
-    height: 57px;
-    padding: 0 18px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    height: 59px;
+    
+    /* マージンとパディングをリセット */
+    margin: 0; 
+    padding: 0 18px; 
+    display: block; 
+    border: 1px solid rgba(95, 95, 95, 1);
+    border-radius: 4px;
     font-size: 22px;
     font-weight: 600;
-    margin: 0 auto;
-    display: block;
 }
 
 .submit-btn {
@@ -90,16 +107,24 @@ body {
     color: #fff;
     font-size: 26px;
     font-weight: 700;
-    margin-top: 45px;
     cursor: pointer;
-    margin: 45px auto 0 auto;
+    
+    /* ユーザー要望: 40pxの上マージンの見た目を維持 */
+    margin-top: 40px;
+    
+    /* 会員登録リンクを引き込むためのネガティブマージンを維持 */
+    margin-bottom: -18px; 
+    
+    margin-left: auto;
+    margin-right: auto;
     display: block;
 }
 
 /* ---------- 会員登録リンク ---------- */
 .register-link-area {
     text-align: center;
-    margin-top: 0px;
+    /* ボタンに引き込まれるため、margin-topは小さくてOK */
+    margin-top: 15px; 
 }
 
 .register-link {
@@ -109,18 +134,23 @@ body {
 }
 
 /* ================================
-   レスポンシブ設定
-   ================================ */
+レスポンシブ設定
+================================ */
+/* (以下、レスポンシブ設定は変更なし) */
+@media (max-height: 800px), (max-width: 1200px) {
+    body {
+        overflow-y: auto !important;
+    }
+}
+
 @media (max-width: 1150px) {
     .auth-content {
         position: static;
+        transform: none;
+        top: initial; 
+        margin: 60px auto 0 auto; 
         width: 75%;
-        margin: 60px auto 0 auto;
-        max-width: 500px;
-    }
-    .main {
-        justify-content: center;
-        padding-top: 40px;
+        max-width: 500px; 
     }
 }
 
@@ -136,15 +166,12 @@ body {
         margin-top: 40px;
     }
 }
-/* フォームの max-width (500px) より狭い画面になったときの対策 */
-@media (max-width: 520px) { /* 500pxより少し余裕を持たせて発火 */
+
+@media (max-width: 520px) {
     .auth-content {
-        /* 幅の制限を解除し、画面幅に合わせて伸縮できるようにする */
-        max-width: 100%; 
-        
-        /* 画面いっぱいに広げ、左右にパディングを設けて余白を作る */
+        max-width: 100%;
         width: 100%;
-        padding: 0 20px; /* 左右に 20px の余白を設ける */
-        box-sizing: border-box; /* paddingを含めて幅 100% となるようにする */
+        padding: 0 20px;
+        box-sizing: border-box;
     }
 }
