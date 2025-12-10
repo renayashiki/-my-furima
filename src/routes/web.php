@@ -44,17 +44,18 @@ Route::post('/register', [RegisterController::class, 'store'])
     ->name('register.store');
 
 // --- メール確認 ---
+
+// src/routes/web.php
+
+// ★ view作成終わったら復活させる本ルートをミドルウェアなしで有効化
 Route::get('/email/verify', [EmailVerificationController::class, 'notice'])
-    ->middleware('auth')
-    ->name('verification.notice');
+    ->name('verification.notice'); // ★ ミドルウェアは削除（一時的）
 
 Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
-    ->middleware(['auth', 'signed'])
-    ->name('verification.verify');
+    ->name('verification.verify'); // ★ ミドルウェアは削除（一時的）
 
 Route::post('/email/resend', [EmailVerificationController::class, 'resend'])
-    ->middleware('auth')
-    ->name('verification.resend');
+    ->name('verification.resend'); // ★ ミドルウェアは削除（一時的）
 
 // ---------------------------------------------
 // 🌈 メール認証後だけ行ける 初回プロフィール設定
