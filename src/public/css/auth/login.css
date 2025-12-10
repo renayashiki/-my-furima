@@ -30,7 +30,7 @@ body {
     margin: -50px auto 0 auto; 
     
     /* 横幅: フォームの最大幅を拡張 */
-    width: 45%; 
+    width: 60%; 
     max-width: 850px; 
     
     min-height: auto;
@@ -152,9 +152,8 @@ body {
 @media (max-width: 1150px) {
     .auth-content {
         position: static;
-        transform: none;
         top: initial; 
-        margin: 60px auto 0 auto; 
+        margin: 0 auto 0 auto; 
         width: 75%;
         max-width: 500px; 
     }
