@@ -4,7 +4,8 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/auth/register.css') }}">
-@endsection
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    @endsection
 
 @section('content')
 <div class="auth-content">  {{-- フォーム全体コンテナ --}}

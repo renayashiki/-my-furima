@@ -39,6 +39,7 @@ body {
 .content-title {
     font-size: 32px;
     font-weight: 700;
+    font-family: 'Inter', sans-serif;
     text-align: center;
     /* ★修正: 縦スクロール解消のため、タイトル下の余白を圧縮 (55px -> 40px) */
     margin-bottom: 40px; 
@@ -55,6 +56,7 @@ body {
     /* Figma数値: font-weight: 700, font-size: 24px, color: black */
     display: block; 
     font-size: 24px;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     color: #000;
     
@@ -85,6 +87,7 @@ body {
     border-radius: 5px;
     color: #fff;
     font-size: 26px;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     /* ★修正: 縦スクロール解消のため、上部の余白を大幅に圧縮 (55px -> 40px) */
     margin-top: 80px; 
@@ -102,7 +105,8 @@ body {
     font-size: 20px;
     color: #0073CC;
     text-decoration: none;
-    font-weight: 400; 
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
 }
 
 

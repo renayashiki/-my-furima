@@ -1,23 +1,39 @@
 <header class="header-app">
     <div class="header-inner">
 
-        {{-- 未認証と同じ SVG ロゴをそのまま流用 --}}
+        {{-- 1. ロゴ --}}
         <h1 class="header-logo">
             <a href="{{ route('products.index') }}">
-               @include('components.logo-svg')
+                @include('components.logo-svg')
             </a>
         </h1>
 
+        {{-- 2. ★新規追加: 検索フォーム★ --}}
+        <div class="header-search-container">
+            <form action="{{ route('products.search') }}" method="GET" class="search-form">
+                {{-- 見本には検索アイコンがないため、プレースホルダーのみ --}}
+                <input type="text" name="keyword" placeholder="なにをお探しですか？" class="search-input">
+            </form>
+        </div>
+
+        {{-- 3. ナビゲーション (右側ボタン) --}}
         <nav class="header-nav">
             <ul class="header-list">
-                <li><a href="{{ route('products.create') }}" class="header-link">出品する</a></li>
-                <li><a href="{{ route('profile.index') }}" class="header-link">マイページ</a></li>
+                {{-- Figma見本画像に合わせて、並び順を「ログアウト」「マイページ」「出品」に変更 --}}
+                
+                {{-- ログアウトボタン (Figma: ログアウト) --}}
                 <li>
                     <form method="POST" action="{{ route('logout') }}" class="logout-form">
                         @csrf
-                        <button type="submit" class="logout-btn">ログアウト</button>
+                        <button type="submit" class="header-link logout-btn">ログアウト</button>
                     </form>
                 </li>
+                
+                {{-- マイページボタン (Figma: マイページ) --}}
+                <li><a href="{{ route('profile.index') }}" class="header-link">マイページ</a></li>
+                
+                {{-- 出品ボタン (Figma: 出品) --}}
+                <li><a href="{{ route('products.create') }}" class="header-link primary-btn">出品</a></li>
             </ul>
         </nav>
 

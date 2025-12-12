@@ -74,6 +74,11 @@ Route::post('/profile/setup', [ProfileSetupController::class, 'store'])
 // ---------------------------------------------
 Route::middleware(['auth', 'verified'])->group(function () {
 
+    // 検索フォームのエラー回避のため、ルートを仮定義★
+    // ListControllerを使用し、仮のindexメソッドを指すことで、既存のコントローラを利用します。
+    Route::get('/products/search', [ListController::class, 'index'])
+        ->name('products.search');
+
     // マイページ
     Route::get('/profile', [ProfileController::class, 'index'])
         ->name('profile.index');

@@ -25,7 +25,6 @@
 
 /* メッセージテキスト */
 .verification-message {
-    /* ★ 縮小: 24px -> 22px ★ */
     font-family: Inter, sans-serif;
     font-weight: 700;
     font-size: 22px; 
@@ -47,20 +46,17 @@
     width: 230px; /* 縮小 */
     height: 60px; /* 縮小 */
     line-height: 60px; 
-    
     background: rgba(217, 217, 217, 1); 
     color: rgba(0, 0, 0, 1); 
     border: 1px solid rgba(0, 0, 0, 1); 
     border-radius: 10px;
     text-decoration: none;
-    
     font-family: Inter, sans-serif;
     font-weight: 700;
     font-size: 22px; /* 縮小 */
-    
+
     /* 認証メールを再送するリンクまでの余白をわずかに調整 (52px → 40px) */
     margin-bottom: 40px; 
-    
     max-width: 90%;
 }
 

@@ -38,6 +38,7 @@ body {
 
 .content-title {
     font-size: 32px;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     text-align: center;
     line-height: 1;
@@ -64,6 +65,7 @@ body {
 
 
 .form-label {
+    font-family: 'Inter', sans-serif;
     font-size: 24px;
     font-weight: bold;
     text-align: left;
@@ -104,14 +106,13 @@ body {
     color: #fff;
     font-size: 26px;
     font-weight: 700;
+    font-family: 'Inter', sans-serif;
     cursor: pointer;
-    
     /* ユーザー要望: 40pxの上マージンの見た目を維持 */
     margin-top: 60px;
     
     /* 会員登録リンクを引き込むためのネガティブマージンを維持 */
     margin-bottom: -18px; 
-    
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -128,6 +129,7 @@ body {
     font-size: 20px;
     color: #0073CC;
     text-decoration: none;
+    font-family: 'Inter', sans-serif;
 }
 
 /* ================================

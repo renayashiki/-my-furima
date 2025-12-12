@@ -1,15 +1,16 @@
-@extends('layouts.guest')
+@extends('layouts.app')
 
 @section('title', '初回プロフィール設定')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/auth/profile-setup.css') }}">
-@endsection
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    @endsection
 
 @section('content')
 <div class="profile-setup-container"> 
     
-    <h2 class="page-title">プロフィール設定</h2>
+    <h1 class="page-title">プロフィール設定</h1>
     
     <form method="POST" action="{{ route('profile.setup.store') }}" enctype="multipart/form-data" class="profile-setup-form">
         @csrf

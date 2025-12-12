@@ -1,43 +1,59 @@
 /* auth/profile-setup.css */
 
 /* --------------------------------------
-   全体レイアウトと縮小調整
-   -------------------------------------- */
+    全体レイアウトと縮小調整
+    -------------------------------------- */
 .profile-setup-container {
     width: 100%;
-    /* ★修正: 見本のように「横幅が短い縦長の長方形」に見せるため、最大幅を大幅に縮小 (680px -> 500px) ★ */
     max-width: 500px; 
-    /* 左寄せは維持 */
-    margin: 0 auto; 
+    
+    /* フォントを維持 */
+    font-family: 'Inter', sans-serif; 
+    
+    /* ★【主要な修正1/8】コンテンツ全体を常に80%に縮小し、中央・上部に配置する */
+    position: absolute; 
+    top: 50px; /* ヘッダーの下あたりに配置 */
+    left: 50%;
+    /* translate(-50%, 0) で中央寄せ、scale(0.8) で常時縮小 */
+    transform: translateX(-50%) scale(0.8); 
+    
+    /* 縮小の起点を維持 */
+    transform-origin: top center; 
+    
+    margin-top: 0; 
+
     padding: 0 2px; 
     box-sizing: border-box;
 }
 
 /* --------------------------------------
-   タイトル (H2) スタイル
-   -------------------------------------- */
+    タイトル (H2) スタイル
+    -------------------------------------- */
 .page-title {
     text-align: center;
     font-size: 28px;
     font-weight: bold;
-    margin-top: 2px; 
-    margin-bottom: 10px; 
+    
+    /* ★【修正2/8】縮小とabsolute配置に合わせて、タイトルをヘッダーから十分下げて配置 */
+    margin-top: 50px; 
+    margin-bottom: 30px; 
 }
 
 /* --------------------------------------
-   上部並列エリア: 丸枠と画像ボタン
-   -------------------------------------- */
+    上部並列エリア: 丸枠と画像ボタン (変更なし)
+    -------------------------------------- */
 .side-by-side-container {
     display: flex;
-    justify-content: flex-start; /* 左寄せ */
+    /* 丸枠とボタンのまとまりを、元の「左寄せ」に維持 */
+    justify-content: flex-start; 
     gap: 20px; 
     align-items: center; 
     margin-bottom: 0; 
 }
 
 /* --------------------------------------
-   丸枠 (image-preview)
-   -------------------------------------- */
+    丸枠 (image-preview) と ボタン (変更なし)
+    -------------------------------------- */
 .image-preview {
     width: 150px;
     height: 150px;
@@ -45,20 +61,12 @@
     border-radius: 50%; 
     flex-shrink: 0;
     margin: 0; 
-    /* 丸枠が消えないように、再度displayプロパティを確実に追加 */
     display: flex; 
     justify-content: center;
     align-items: center;
 }
 
-/* --------------------------------------
-   画像を選択するボタン
-   -------------------------------------- */
-.file-input-hidden {
-    /* 標準のファイル選択要素を完全に非表示にする */
-    display: none;
-}
-
+.file-input-hidden { display: none; }
 .file-select-btn {
     display: inline-block;
     width: 130px; 
@@ -74,22 +82,14 @@
     font-weight: bold;
     cursor: pointer;
     text-align: center;
+    font-family: 'Inter', sans-serif; 
 }
 
 /* --------------------------------------
-   下部全幅エリア (ユーザー名以下)
-   -------------------------------------- */
-
-/* ユーザー名入力欄 */
-.form-group.user-name-group {
-    margin-top: 25px; 
-    margin-bottom: 20px; 
-}
-
-/* フォームグループ全体 */
-.form-group {
-    margin-bottom: 20px; 
-}
+    下部全幅エリア (ユーザー名以下) (変更なし)
+    -------------------------------------- */
+.form-group.user-name-group { margin-top: 25px; margin-bottom: 30px; }
+.form-group { margin-bottom: 30px; }
 
 /* 項目名（ラベル） */
 .form-label.visible-label {
@@ -97,10 +97,11 @@
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 5px; 
+    font-family: 'Inter', sans-serif; 
 }
 
 /* 入力欄 */
-.form-input {
+.form-input { 
     width: 100%;
     height: auto; 
     padding: 10px 15px; 
@@ -109,70 +110,103 @@
     box-sizing: border-box;
     font-size: 16px; 
     line-height: 1.5; 
+    font-family: 'Inter', sans-serif; 
 }
 
 /* --------------------------------------
-   更新ボタン (赤)
-   -------------------------------------- */
+    更新ボタン (赤) (変更なし)
+    -------------------------------------- */
 .submit-btn {
     width: 100%;
     height: auto;
-    padding: 15px 0; 
+    /* ボタン高さを維持 (入力欄と同じ高さ) */
+    padding: 8px 0; 
     background: rgba(255, 85, 85, 1); 
-    color: white;
+    color: white; 
     border: none;
     border-radius: 4px; 
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 5px; 
-    /* 見本通りの余白を確保 (50px) */
+    margin-top: 20px; 
     margin-bottom: 50px; 
+    font-family: 'Inter', sans-serif; 
 }
 
 
-/* ★★★ 修正②: コンテンツ全体の縮小率の再調整 ★★★ */
-/* コンテナの幅を狭くしたため、縮小率をさらに抑えます */
+/* ★★★ コンテンツ全体の縮小率の再調整 (納まりの維持) ★★★ */
+/* 基準の scale(0.8) から、さらに低くなる場合に縮小率を上書きする */
+
 @media (max-height: 850px) {
     .profile-setup-container {
-        /* 画面が狭い場合に縮小。0.95 (95%) */
-        transform: scale(0.95);
+        /* ★【修正3/8】基準の scale(0.8) を維持 */
+        transform: translateX(-50%) scale(0.8);
         transform-origin: top center; 
     }
 }
 @media (max-height: 750px) {
-    /* 画面の高さが750px以下の場合、さらに縮小 */
     .profile-setup-container {
-        transform: scale(0.90);
+        /* ★【修正4/8】さらに縮小 (0.75) */
+        transform: translateX(-50%) scale(0.75);
         transform-origin: top center;
     }
 }
-/* 画面の高さが十分にある場合は、縮小を行わない */
+@media (max-height: 680px) {
+    .profile-setup-container {
+        /* ★【修正5/8】さらに縮小 (0.70) */
+        transform: translateX(-50%) scale(0.70); 
+        transform-origin: top center;
+    }
+}
+@media (max-height: 650px) {
+    .profile-setup-container {
+        /* ★【修正6/8】さらに縮小 (0.65) */
+        transform: translateX(-50%) scale(0.65); 
+        transform-origin: top center;
+    }
+}
+@media (max-height: 620px) {
+    .profile-setup-container {
+        /* ★【修正7/8】さらに縮小 (0.60) */
+        transform: translateX(-50%) scale(0.60); 
+        transform-origin: top center;
+    }
+}
+
+
 @media (min-height: 851px) {
     .profile-setup-container {
-        transform: scale(1);
+        /* 画面が大きい場合はベースの scale(0.8) を維持 */
+        transform: translateX(-50%) scale(0.8);
         transform-origin: top center;
     }
 }
 
 
 /* --------------------------------------
-   メディアクエリ (レスポンシブ対応: スマホ表示を想定)
-   -------------------------------------- */
+    メディアクエリ (レスポンシブ対応: スマホ表示を想定)
+    -------------------------------------- */
 @media (max-width: 600px) {
-    /* スマホ表示では、縦長レイアウトを維持しつつ、縮小を解除 */
     .profile-setup-container {
         max-width: 100%;
-        transform: scale(1);
-        transform-origin: top center;
+        /* ★【修正8/8】スマホでは縮小を解除し、通常フローに戻す */
+        transform: scale(1); 
+        position: static; 
+        top: auto;
+        left: auto;
+        margin: 0 auto; /* 中央寄せ */
+    }
+    
+    .page-title {
+        margin-top: 20px; 
     }
     
     .side-by-side-container {
+        justify-content: center;
         flex-direction: column;
         align-items: center; 
         gap: 20px; 
         margin-bottom: 20px; 
-        justify-content: center;
     }
     
     .form-group.user-name-group {

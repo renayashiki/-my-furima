@@ -5,7 +5,8 @@
 {{-- ★ CSSの読み込み方法を修正 ★ --}}
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/auth/email-verify.css') }}">
-@endsection
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    @endsection
 
 @section('content')
 <div class="message-container">
