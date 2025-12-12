@@ -21,8 +21,7 @@ body {
 /* ---------- 4. ログインフォーム ---------- */
 .auth-content {
     position: static; 
-    top: initial; 
-    
+    top: initial;
     transform: scale(0.70); 
     transform-origin: top center; 
     
@@ -32,7 +31,6 @@ body {
     /* 横幅: フォームの最大幅を拡張 */
     width: 60%; 
     max-width: 850px; 
-    
     min-height: auto;
     padding: 60px 40px 70px 40px; 
     background-color: rgba(255, 255, 255, 1);
@@ -42,8 +40,8 @@ body {
     font-size: 32px;
     font-weight: 700;
     text-align: center;
-    line-height: 1; 
-    margin-bottom: -10px; 
+    line-height: 1;
+    margin-bottom: -20px; 
 }
 
 /* フォームの親要素 */
@@ -55,11 +53,8 @@ body {
 .form-group {
     display: flex;
     flex-direction: column;
-    
-    align-items: flex-start; 
-    
-    /* 項目間の余白 (メールアドレスとパスワードの間) を維持 */
-    margin-bottom: 2px; 
+    align-items: flex-start;
+
 }
 
 /* 最初のフォームグループ（メールアドレス）とタイトル間の余白を調整 */
@@ -70,14 +65,11 @@ body {
 
 .form-label {
     font-size: 24px;
-    font-weight: 500;
+    font-weight: bold;
     text-align: left;
-    
     display: block; 
-    
     /* ★最終修正1: line-heightを極端に小さくし、テキストを上へ、かつ余白をなくす */
-    line-height: 0.9; 
-    
+    line-height: 0.4; 
     /* ★最終修正2: マージンとパディングを完全にゼロにし、強制的に密着 */
     margin: 0; 
     padding: 0;
@@ -89,20 +81,19 @@ body {
     height: 59px;
     
     /* マージンとパディングをリセット */
-    margin: 0; 
-    padding: 0 18px; 
-    
-    display: block; 
-    
+    margin: 0;
+    padding: 0 18px;
+    display: block;
     /* ★最終修正3: 入力欄の上端にわずかなパディングを追加し、ラベルとの間に隙間を作る */
     /* ラベルと入力欄の間に1pxの隙間を作る役割を持たせる */
     padding-top: 1px; 
-    
     border: 1px solid rgba(95, 95, 95, 1);
     border-radius: 4px;
     font-size: 22px;
     font-weight: 600;
+    
 }
+
 
 .submit-btn {
     width: 100%;
@@ -116,7 +107,7 @@ body {
     cursor: pointer;
     
     /* ユーザー要望: 40pxの上マージンの見た目を維持 */
-    margin-top: 55px;
+    margin-top: 60px;
     
     /* 会員登録リンクを引き込むためのネガティブマージンを維持 */
     margin-bottom: -18px; 
@@ -137,6 +128,32 @@ body {
     font-size: 20px;
     color: #0073CC;
     text-decoration: none;
+}
+
+/* ================================
+auth/login.css - 最終修正案: パスワード入力欄を強制的に引き上げる
+================================ */
+
+/* パスワード入力欄（2番目のフォームグループ内の入力欄）をターゲットにする */
+.login-form > .form-group:nth-child(2) .form-input {
+    /* ネガティブマージンで強制的に上へ引き上げ、余白を作る */
+    margin-top: -10px !important; 
+    /* 既存の padding-top: 1px; も強制的にリセット（念のため） */
+    padding-top: 0 !important; 
+}
+
+/* ================================
+auth/login.css - 最終修正案: パスワード入力欄を強制的に引き上げる
+================================ */
+
+/* パスワード入力欄（3番目の子要素にあるフォームグループ内の入力欄）をターゲットにする */
+.login-form > .form-group:nth-child(3) .form-input {
+    /* ネガティブマージンで強制的に上へ引き上げ、余白を作る */
+    /* ※ メールアドレスと同様の余白感になるように -10px を適用 */
+    margin-top: 15px !important; 
+    
+    /* 既存の padding-top: 1px; も強制的にリセット */
+    padding-top: 0 !important; 
 }
 
 /* ================================
