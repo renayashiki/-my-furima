@@ -2,166 +2,109 @@
 
 /* --------------------------------------
     タブナビゲーションエリア (上部空間)
+    (ヘッダーエリアは、お客様の安定コードの状態を完全に維持します)
     -------------------------------------- */
-
-.tab-radio {
-    display: none;
-}
-
-/* ★★★ 修正1/3: タブのデザイン復元 (崩れ解消) ★★★ */
+.tab-radio { display: none; }
 .tab-navigation-visual {
-    width: 100%; 
-    max-width: 1512px; 
-    margin: 0 auto;
-    position: relative; /* 子要素の absolute の基準となる */
-    /* 指定値: height: 77px を維持 */
-    height: 77px; 
-    z-index: 10;
+    width: 100%; max-width: 1512px; margin: 0 auto;
+    position: relative; height: 77px; z-index: 10;
 }
-
 .tab-switch {
-    display: flex;
-    height: 100%;
-    align-items: flex-end; /* ボタンを下端（区切り線側）に配置 */
-    
-    padding-left: 129px; 
-    box-sizing: border-box;
-    /* タブ間の隙間: 26px */
-    gap: 26px; 
-    padding-bottom: 5px; /* 下線との極狭の余白 */
+    display: flex; height: 100%; align-items: flex-end; 
+    padding-left: 129px; box-sizing: border-box;
+    gap: 26px; padding-bottom: 5px; 
+    background-color: white; 
 }
-
-/* ラベル（タブ本体）の共通スタイル */
 .tab-link {
-    /* デザイン値の復元 */
-    width: 155px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end; /* 文字を右寄せ */
-    padding-right: 15px; 
-    
-    cursor: pointer;
-    font-weight: 700; 
-    font-size: 18px;
-    
-    /* position: static に戻すことで、フレックスボックス内で正しく配置される */
-    position: static; 
-    
-    color: rgba(95, 95, 95, 1); 
-    z-index: 11; 
+    width: 155px; height: 40px;
+    display: flex; align-items: center; justify-content: flex-end; 
+    padding-right: 15px; cursor: pointer;
+    font-weight: 700; font-size: 18px;
+    position: static; color: rgba(95, 95, 95, 1); 
+    z-index: 11; text-decoration: none; 
 }
-
-/* タブの色制御 (ここでは CSSの兄弟セレクタが使えないため、初期状態のみ再現) */
-.tab-link.tab-recommend {
-    color: rgba(255, 0, 0, 1);
-}
-.tab-link.tab-mylist {
-    color: rgba(95, 95, 95, 1);
-}
-
-/* 区切り線 */
+.tab-link.tab-recommend { color: rgba(255, 0, 0, 1); }
+.tab-link.tab-mylist { color: rgba(95, 95, 95, 1); }
 .tab-divider {
-    width: 100%;
-    height: 2px;
+    width: 100%; height: 2px;
     background: rgba(95, 95, 95, 1); 
-    position: absolute;
-    bottom: 0; 
-    left: 0;
+    position: absolute; bottom: 0; left: 0;
 }
-
 
 /* --------------------------------------
-    商品一覧 (コンテンツ切り替え部分)
+    商品一覧 (コンテンツ部分)
     -------------------------------------- */
 
 .products-container {
-    /* ★★★ 修正2/3: コンテナの幅を見直し、グリッドをコンパクトに配置 ★★★ */
     width: 100%;
-    /* 4列 (290px * 4) + 隙間 (30px * 3) + 左余白 (69px) = 1160 + 90 + 69 = 1319px。
-       最大幅をこのサイズより少し大きく設定し、左右の余白を確保します。
-       以前の 1374.5px を維持し、アイテムサイズとグリッド余白でサイズ感を調整します。*/
     max-width: 1374.5px; 
     
-    /* tab-navigation-visual の後に来るため、margin-top を調整 */
-    margin: 50px auto 0 auto; 
-    padding: 0;
+    /* ★★★ 修正3/3 (上部): 区切り線からの縦余白を 40px に設定 ★★★ */
+    margin: 40px auto 0 auto; 
+    
+    padding: 0; 
     box-sizing: border-box;
     position: relative;
     z-index: 5; 
 }
 
-.product-list {
-    /* HTML構造を変更したため、コンテンツを一旦常時表示にします。
-       タブ切り替え機能はJavaScriptに移行する必要があります。
-       現在は「おすすめ」のみが表示される状態を再現します。 */
-    display: none; 
-    padding: 0; 
-    box-sizing: border-box;
-}
+.product-list { display: grid; padding: 0; box-sizing: border-box; }
+#recommend-content { display: grid; }
 
-/* コンテンツ表示のセレクタ: HTML構造変更により、セレクタを簡素化 */
-/* products-container の直前にあるのは tab-navigation-visual なので、
-   コンテンツ表示は JavaScript で行う必要がありますが、
-   ここでは「おすすめ」を初期表示します。*/
-#recommend-content {
-    display: grid;
-}
-
-/* ★★★ 修正3/3: 商品グリッドのサイズ・余白の調整 ★★★ */
 .product-grid {
-    grid-template-columns: repeat(4, 290px); 
-    gap: 30px; 
-    padding-left: 69px; 
-    margin: 0 auto;
+    /* 横幅 200px に固定 (アイテム幅の維持) */
+    grid-template-columns: repeat(4, 200px); 
+    
+    /* ★★★ 修正1/3: 横方向の余白 (画像間) を 40px に設定 ★★★ */
+    column-gap: 40px; 
+    
+    /* ★★★ 修正3/3 (行間): 縦方向の余白 (行間) を 50px に設定 ★★★ */
+    row-gap: 50px; 
+    
+    /* ★★★ 修正2/3: 中央配置を実現（左右の余白を均等にする） ★★★ */
+    padding-left: 0; /* 左寄せの固定値を削除 */
+    margin: 0 auto; /* 中央寄せを適用 */
 }
 
 .product-item-wrapper {
-    /* サイズは 290px / 320px を維持 */
-    width: 290px;
-    height: 320px; 
+    /* 縦長になるよう、幅 200px / 高さ 225px に固定 */
+    width: 200px; 
+    height: 225px; 
     
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2); 
+    /* ★★★ ぼかしの削除を維持 ★★★ */
+    box-shadow: none; 
+    
     border-radius: 4px;
     background-color: white; 
     position: relative; 
+    margin: 0; 
 }
 
-/* 不要要素のスタイル削除 */
 .product-item {
     text-decoration: none; 
     cursor: default; 
     display: block; 
 }
 
-/* 商品画像枠の構成 */
 .product-image-box {
-    width: 100%; 
-    height: 281.27px; 
+    width: 100%; height: 200px; border-radius: 4px 4px 0 0; 
+    border: none; margin-bottom: 5px; 
     background: rgba(217, 217, 217, 1); 
-    border-radius: 4px 4px 0 0; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex; justify-content: center; align-items: center;
     overflow: hidden; 
 }
+
 .product-image-box .product-image-text {
-    font-size: 40px;
+    font-size: 30px;
     color: black; 
 }
 
 .product-name-box {
-    width: 100%;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    padding-left: 10px; 
-    box-sizing: border-box;
-    background-color: white; 
-    border-radius: 0 0 4px 4px; 
+    width: 100%; height: 20px; 
+    display: flex; align-items: center; justify-content: flex-start;
+    padding: 0; border: none; border-radius: 0 0 4px 4px; 
+    box-sizing: border-box; background-color: white; 
 }
 .product-name-box .product-name-text {
-    font-size: 25px;
-    color: black; 
-    margin: 0; 
+    font-size: 18px; color: black; margin: 0; text-decoration: none; 
 }
