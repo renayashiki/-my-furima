@@ -23,7 +23,7 @@
         <div class="tab-divider"></div>
     </div>
     
-    {{-- 3. コンテンツ（商品リスト） --}}
+    {{-- 3. コンテンツ（商品リスト）今後も修正必要機能入れる --}}
     <div class="products-container">
         
         <div id="recommend-content" class="product-grid product-list">
