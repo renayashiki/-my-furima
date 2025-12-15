@@ -1,54 +1,34 @@
-@extends('layouts.app') 
+@extends('layouts.guest')
 
-@section('title', '商品一覧')
+@section('title', 'ログイン')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/products/index.css') }}">
-@endsection
+    <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    @endsection
 
 @section('content')
-<div class="main-content">
-    
-    {{-- 1. コントロール要素 (タブ切り替え用。CSSのみで制御するため、コンテンツとは分離) --}}
-    <input type="radio" id="tab-recommend" name="product-tabs" checked class="tab-radio">
-    <input type="radio" id="tab-mylist" name="product-tabs" class="tab-radio">
-    
-    {{-- 2. デザイン要素 (タブボタンを見本通りに配置) --}}
-    <div class="tab-navigation-visual">
-        <div class="tab-switch">
-            <label for="tab-recommend" class="tab-link tab-recommend">おすすめ</label>
-            <label for="tab-mylist" class="tab-link tab-mylist">マイリスト</label>
+<div class="auth-content">
+    <h1 class="content-title">ログイン</h1>
+
+    <form method="POST" action="{{ route('login.store') }}" class="login-form" novalidate>
+        @csrf
+
+        <div class="form-group">
+            <p class="form-label">メールアドレス</p>            
+            <input type="email" id="email" name="email" class="form-input" required autofocus>
         </div>
-        <div class="tab-divider"></div>
-    </div>
-    
-    {{-- 3. コンテンツ（商品リスト） --}}
-    <div class="products-container">
-        
-        <div id="recommend-content" class="product-grid product-list">
-            @for ($i = 0; $i < 8; $i++) 
-                <div class="product-item-wrapper">
-                    <a href="#" class="product-item">
-                        <div class="product-image-box"><p class="product-image-text">商品画像</p></div>
-                        <div class="product-name-box"><p class="product-name-text">商品名</p></div>
-                    </a>
-                    {{-- ハートボタンは削除済み --}}
-                </div>
-            @endfor
+
+        <div class="form-group">
+            <p class="form-label">パスワード</p>
+            <input type="password" id="password" name="password" class="form-input" required>
         </div>
-        
-        <div id="mylist-content" class="product-grid product-list">
-             @for ($i = 0; $i < 2; $i++) 
-                <div class="product-item-wrapper">
-                    <a href="#" class="product-item">
-                        <div class="product-image-box"><p class="product-image-text">商品画像</p></div>
-                        <div class="product-name-box"><p class="product-name-text">商品名 (マイリスト)</p></div>
-                    </a>
-                </div>
-            @endfor
-        </div>
-        
-    </div>
-    
+
+        <button type="submit" class="submit-btn">ログインする</button>
+    </form>
+
+        <p class="register-link-area">
+        <a href="{{ route('register') }}" class="register-link">会員登録はこちら</a>
+    </p>
 </div>
 @endsection

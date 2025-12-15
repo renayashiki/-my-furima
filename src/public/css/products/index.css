@@ -2,7 +2,7 @@
 
 /* --------------------------------------
     タブナビゲーションエリア (上部空間)
-    (ヘッダーエリアは、お客様の安定コードの状態を完全に維持します)
+    ★★★ 修正1/2: ボタンゾーンの完全復元（安定デザインの維持） ★★★
     -------------------------------------- */
 .tab-radio { display: none; }
 .tab-navigation-visual {
@@ -19,12 +19,20 @@
     width: 155px; height: 40px;
     display: flex; align-items: center; justify-content: flex-end; 
     padding-right: 15px; cursor: pointer;
-    font-weight: 700; font-size: 18px;
+    font-weight: 700; /* 安定コードの太字を維持 */
+    font-size: 18px;
     position: static; color: rgba(95, 95, 95, 1); 
-    z-index: 11; text-decoration: none; 
+    z-index: 11; 
+    text-decoration: none; /* ★破綻の原因となる下線を確実に削除 */
+    border-bottom: none; /* 余計なボーダーを削除 */
 }
-.tab-link.tab-recommend { color: rgba(255, 0, 0, 1); }
+.tab-link.tab-recommend { 
+    color: rgba(255, 0, 0, 1); 
+    /* アクティブなタブに赤線がある場合は、ここで border-bottom を追加してください。
+       現在、安定コードには赤線がないため、追加しません。 */
+}
 .tab-link.tab-mylist { color: rgba(95, 95, 95, 1); }
+
 .tab-divider {
     width: 100%; height: 2px;
     background: rgba(95, 95, 95, 1); 
@@ -33,19 +41,15 @@
 
 /* --------------------------------------
     商品一覧 (コンテンツ部分)
+    ★★★ 修正2/2: 余白設定の維持と中央配置の実現 ★★★
     -------------------------------------- */
 
 .products-container {
     width: 100%;
     max-width: 1374.5px; 
-    
-    /* ★★★ 修正3/3 (上部): 区切り線からの縦余白を 40px に設定 ★★★ */
-    margin: 40px auto 0 auto; 
-    
-    padding: 0; 
-    box-sizing: border-box;
-    position: relative;
-    z-index: 5; 
+    margin: 40px auto 0 auto; /* 上部余白 40px を維持 */
+    padding: 0; box-sizing: border-box;
+    position: relative; z-index: 5; 
 }
 
 .product-list { display: grid; padding: 0; box-sizing: border-box; }
@@ -55,15 +59,19 @@
     /* 横幅 200px に固定 (アイテム幅の維持) */
     grid-template-columns: repeat(4, 200px); 
     
-    /* ★★★ 修正1/3: 横方向の余白 (画像間) を 40px に設定 ★★★ */
+    /* 横方向の余白 (画像間) 40px を維持 */
     column-gap: 40px; 
     
-    /* ★★★ 修正3/3 (行間): 縦方向の余白 (行間) を 50px に設定 ★★★ */
+    /* 縦方向の余白 (行間) 50px を維持 */
     row-gap: 50px; 
     
-    /* ★★★ 修正2/3: 中央配置を実現（左右の余白を均等にする） ★★★ */
-    padding-left: 0; /* 左寄せの固定値を削除 */
-    margin: 0 auto; /* 中央寄せを適用 */
+    /* 中央配置を実現: padding-left を削除し、margin: 0 auto を適用 */
+    padding-left: 0; 
+    margin: 0 auto; 
+    
+    /* 中央寄せを確実にするため、明示的にグリッドの幅をコンテンツ幅に設定 */
+    /* 200px * 4 + 40px * 3 = 920px */
+    width: 920px; 
 }
 
 .product-item-wrapper {
@@ -71,7 +79,7 @@
     width: 200px; 
     height: 225px; 
     
-    /* ★★★ ぼかしの削除を維持 ★★★ */
+    /* ぼかしの削除を維持 */
     box-shadow: none; 
     
     border-radius: 4px;
@@ -81,9 +89,8 @@
 }
 
 .product-item {
-    text-decoration: none; 
-    cursor: default; 
-    display: block; 
+    text-decoration: none; /* リンクの紫の下線を削除 */
+    cursor: default; display: block; 
 }
 
 .product-image-box {
@@ -95,8 +102,7 @@
 }
 
 .product-image-box .product-image-text {
-    font-size: 30px;
-    color: black; 
+    font-size: 30px; color: black; 
 }
 
 .product-name-box {
@@ -106,5 +112,5 @@
     box-sizing: border-box; background-color: white; 
 }
 .product-name-box .product-name-text {
-    font-size: 18px; color: black; margin: 0; text-decoration: none; 
+    font-size: 18px; color: black; margin: 0; text-decoration: none; /* 商品名の紫の下線を削除 */
 }
