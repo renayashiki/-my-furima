@@ -1,7 +1,6 @@
 /* ================================
-   app-common.css
-   ログイン後ヘッダー用（未認証と衝突しない設計）
-   ================================ */
+    app-common.css
+    ================================ */
 
 
 /* ベース */
@@ -10,35 +9,31 @@
     width: 100%;
     height: 50px; 
     display: flex;
-    /* ★修正: ヘッダー全体を左に寄せる (中央寄せを解除)★ */
     justify-content: flex-start; 
     align-items: center;
-    /* ★追加: ブラウザ左端からの余白 40px を確保★ */
-
     box-sizing: border-box;
-    /* ★フォント指定: Inter Regular を使用 (フォントファイルが読み込まれている前提)★ */
     font-family: 'Inter', sans-serif;
+    
+    padding: 0; 
 }
 
 .header-inner {
-    /* ★修正: 幅を100%にし、左寄せを強制する★ */
     width: 100%; 
     max-width: 1515px; 
     height: 50px; 
     display: flex;
     align-items: center;
-    /* ロゴ、検索欄、ナビゲーションの間の隙間を広げる */
     justify-content: space-between; 
     padding: 0; 
     box-sizing: border-box; 
     position: relative;
-    /* ★重要修正: 中央寄せを解除 (左寄せを強制)★ */
-    margin: 0; 
+    margin: 0 auto; 
+    
+    padding-left: 0px; 
 }
 
 /* ロゴ */
 .header-logo {
-    /* ロゴが最も左に位置する */
     margin: 0;
     padding: 0;
     display: flex;
@@ -46,6 +41,8 @@
     width: 370px;
     height: 30px; 
     flex-shrink: 0;
+    
+    margin-left: -5px; 
 }
 
 .header-logo svg {
@@ -64,20 +61,21 @@
     display: flex;
     align-items: center;
     
-    /* ロゴと検索欄の隙間 */
-    margin-left: 130px;
+    /* ★修正①: 検索欄の右端を商品画像3つ目の右端に合わせるため、右へさらに微調整 */
+    margin-left: 230px; /* 150px から 180px へ */
 }
 
 .search-form {
     width: 100%; 
-    max-width: 500px; 
+    max-width: 350px; 
     height: 30px;
     background: rgba(255, 255, 255, 1);
     border-radius: 5px;
     display: flex;
     align-items: center;
-    /* 検索フォーム全体にパディングを設ける (左側にアイコンがない場合) */
     padding: 0;
+    
+    flex-shrink: 0;
 }
 
 .search-input {
@@ -87,25 +85,21 @@
     outline: none;
     font-size: 16px; 
     
-    /* ★修正: プレースホルダーの文字の左に余白を設ける (15px -> 20px に調整)★ */
     padding-left: 25px; 
     padding-right: 15px;
     
     background: transparent;
     color: rgba(0, 0, 0, 1);
-
 }
 
 .search-input::placeholder {
-    /* RGBA指定を維持 */
     color: rgba(0, 0, 0, 1); 
-    /* 不透明度を強制的に1に設定 */
     opacity: 1; 
     -webkit-opacity: 1;
     -moz-opacity: 1;
     -ms-opacity: 1;
     
-    font-weight: 400; /* Regular */
+    font-weight: 400; 
     text-align: left;
     line-height: normal; 
 }
@@ -118,13 +112,12 @@
     width: auto; 
     flex-shrink: 0; 
     
-    /* ★修正: 右端に余白を作るため、ナビゲーション全体にパディングを設ける★ */
+    /* ★修正②: ボタンの右端の余白を維持 (初期値: 40px) */
     padding-right: 40px; 
 }
 
 .header-list {
     display: flex;
-    /* ボタン間の距離を調整 */
     gap: 20px; 
     list-style: none;
     margin: 0;
@@ -138,13 +131,11 @@
     align-items: center;
 }
 
-/* ログアウトとマイページ (共通スタイル) */
 .header-link,
 .logout-btn {
-    /* RGBA指定を維持 */
     color: rgba(255, 255, 255, 1);
     font-size: 18px; 
-    font-weight: 400; /* Regular */
+    font-weight: 400; 
     text-decoration: none;
     border: none;
     background: none;
@@ -163,9 +154,7 @@
     padding: 0;
 }
 
-/* 出品ボタン (primary-btn) */
 .header-link.primary-btn {
-    /* RGBA指定を維持 */
     background: rgba(255, 255, 255, 1);
     color: rgba(0, 0, 0, 1);
     
@@ -178,30 +167,43 @@
 }
 
 /* ================================
-   レスポンシブ対応 (画面幅が狭いとき)
-   ================================ */
+    レスポンシブ対応 (画面幅が狭いとき)
+    ================================ */
 
 @media (max-width: 1200px) {
     .header-inner {
         width: 100%; 
         max-width: 1200px;
-        margin: 0;
+        margin: 0 auto;
+        padding-left: 0px; 
+    }
+    
+    .header-logo {
+        width: 300px; 
+        margin-left: -5px; 
+    }
+    .header-logo svg {
+        width: 300px;
     }
     
     .header-app {
-        /* 左寄せを維持し、パディングを調整 */
-        padding-left: 20px;
-        padding-right: 0; /* innerとnavで管理 */
+        padding-left: 0; 
+        padding-right: 0; 
+    }
+    
+    .header-search-container {
+        /* 縮小画面でもロゴと検索欄の間隔を確保 */
+        margin-left: 80px; 
     }
     
     .header-nav {
-        /* 右端の余白を調整 */
-        padding-right: 20px; 
+        /* ボタンを収めるため、右端の余白を減らす */
+        padding-right: 10px; 
     }
 
-    /* 検索フォームの幅を調整 */
     .search-form {
-        max-width: 300px; 
+        max-width: 200px; 
+        flex-shrink: 1;
     }
     
     .header-link,
@@ -220,21 +222,42 @@
 }
 
 @media (max-width: 800px) {
-    /* 検索フォームを非表示にして、ロゴとナビボタンだけを表示する */
+    
     .header-search-container {
         display: none;
     }
     
-    /* ロゴとボタンを左右に配置し、中央に余白を作る */
     .header-inner {
         justify-content: space-between;
+        padding-left: 0px; 
+        padding-right: 10px;
     }
     
     .header-logo {
-        width: 250px;
+        width: 220px; 
+        margin-left: -5px; 
     }
     
     .header-logo svg {
-        width: 250px;
+        width: 220px;
+    }
+    
+    .header-nav {
+        padding-right: 0; 
+    }
+    
+    .header-link,
+    .logout-btn {
+        font-size: 14px; 
+        width: 60px; 
+    }
+    
+    .header-link.primary-btn {
+        width: 50px;
+        font-size: 14px;
+    }
+    
+    .header-list {
+        gap: 5px;
     }
 }
