@@ -1,0 +1,311 @@
+/* products/purchase.css */
+
+/* --------------------------------------
+    基本レイアウトと余白調整
+    -------------------------------------- */
+.purchase-container {
+    width: 100%;
+    max-width: 1515px; 
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    padding-top: 50px; /* ヘッダーからの余白 (Figma値基準) */
+}
+
+.purchase-form {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0;
+    width: 100%;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+.left-content-wrapper {
+    width: 885px; 
+    flex-shrink: 0;
+    position: relative;
+    margin-right: 62px;
+}
+
+.right-summary-wrapper {
+    width: 440px;
+    flex-shrink: 0;
+    position: relative;
+    /* ★修正: 右側の表のトップ余白をFigma値に合わせて調整 (Figma top: 173px - 50px = 123px) */
+    padding-top: 123px; 
+}
+
+
+/* --------------------------------------
+    1. 商品情報ブロック (左上)
+    -------------------------------------- */
+.product-info-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    /* ★修正: 商品情報の上部の余白をFigma値に合わせて調整 (Figma top: 173px - 50px = 123px) */
+    padding-top: 123px; 
+    padding-left: 80px;
+    margin-bottom: 0; 
+}
+
+/* 商品画像 (正方形) */
+.product-image-box {
+    width: 177.527px;
+    height: 177.527px;
+    background: rgba(217, 217, 217, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.product-details-box {
+    width: 326px; 
+    height: 187px;
+    padding-top: 10px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+/* ★修正: 商品名と価格のフォントサイズと太さを見本に合わせる */
+.product-name {
+    font-size: 30px;
+    font-weight: 700; /* 太字 */
+    margin: 0 0 10px 0;
+    color: #000;
+}
+
+.product-price-large {
+    font-size: 27px;
+    font-weight: 400; /* 通常 */
+    margin: 0;
+    color: #000;
+}
+
+
+/* --------------------------------------
+    区切り線 (幅: 805) の位置修正 (①)
+    -------------------------------------- */
+.divider-line {
+    /* Figma値: width: 805px */
+    width: 805px; 
+    height: 1px;
+    background: rgba(0, 0, 0, 1);
+    position: absolute;
+    left: 80px; /* Figma値 80px */
+    z-index: 1;
+}
+
+/* ★修正①: 商品情報と支払い方法の間の区切り線 (Figma top: 403px) */
+.product-divider {
+    top: 353px; /* 403px - 50px */
+}
+
+/* ★修正①: 支払い方法と配送先の間の区切り線 (Figma top: 593px) */
+.payment-divider { 
+    top: 543px; /* 593px - 50px */
+}
+
+/* ★修正①: 配送先の下の区切り線 (Figma top: 808px) */
+.shipping-divider { 
+    top: 758px; /* 808px - 50px */
+}
+
+
+/* --------------------------------------
+    2. 支払い方法選択 (左中)
+    -------------------------------------- */
+.payment-method-block {
+    position: relative;
+    padding-left: 115px; 
+    padding-right: 80px;
+    box-sizing: border-box;
+    /* ★修正: 上の区切り線からの余白を調整 */
+    padding-top: 35px; 
+    padding-bottom: 0;
+}
+
+.block-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 10px 0; 
+    color: #000;
+}
+
+/* セレクトボックスのコンテナ */
+.custom-select-wrapper {
+    position: relative;
+    margin-left: 61px;
+    /* ★修正: 下の区切り線との間隔調整 */
+    margin-bottom: 45px; 
+}
+
+/* ★修正②: 支払方法のセレクトボックスのスタイル */
+.payment-select-box {
+    /* Figma値: width: 269, height: 62 */
+    width: 269px;
+    height: 62px;
+    /* Figma値: border: 1.5px solid rgba(177, 177, 177, 1) */
+    border: 1.5px solid rgba(177, 177, 177, 1); 
+    border-radius: 5px; 
+    background: #FFF;
+    font-size: 16px;
+    padding: 0 30px 0 10px;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    
+    /* プレースホルダーのテキスト色調整 */
+    color: #000; /* 通常は黒 */
+}
+
+/* ★修正②: プレースホルダー（選択してください）が選択されている状態の文字色を薄くする */
+.payment-select-box:invalid {
+    color: #666; /* 選択されていない時の色 */
+}
+.payment-select-box option:first-child {
+    color: #666; 
+}
+
+
+/* ★修正②: フォーカス（クリック）時の青い枠線/背景シミュレーション */
+.payment-select-box:focus {
+    outline: none;
+    border-color: rgba(85, 153, 235, 1); /* 青い枠線 */
+    box-shadow: 0 0 0 1px rgba(85, 153, 235, 1);
+}
+
+/* Note: 選択肢のホバー時の青い背景（Figma値: rgba(85, 153, 235, 1)）や
+         ✔マークは、ネイティブの<select>要素のドロップダウンメニューにはCSS/HTMLでは適用できません。
+         この機能を実現するには、JavaScriptでカスタムのドロップダウンを実装する必要があります。 */
+
+
+/* --------------------------------------
+    3. 配送先情報 (左下)
+    -------------------------------------- */
+.shipping-address-block {
+    position: relative;
+    /* ★修正: 上の区切り線からの余白を調整 */
+    padding-top: 35px; 
+    padding-left: 115px; 
+    padding-right: 80px;
+    box-sizing: border-box;
+    margin-bottom: 30px; 
+}
+
+/* 変更するボタンのFigma値 */
+.address-change-btn {
+    position: absolute;
+    top: 5px; 
+    right: 35px; 
+    
+    width: 115px;
+    height: 85px; 
+    
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(0, 115, 204, 1);
+    text-decoration: none;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* --------------------------------------
+    右側エリア (購入サマリー)
+    -------------------------------------- */
+.summary-table-wrapper {
+    width: 440px;
+    height: 230px;
+    /* ★修正③: 一番外側の枠線を維持 */
+    border: 1px solid rgba(0, 0, 0, 1); 
+    background: #FFF;
+    box-sizing: border-box;
+    position: relative;
+    border-collapse: collapse; /* table-wrapper側にも念のため適用 */
+}
+
+.summary-table {
+    display: table;
+    width: 100%;
+    height: 100%;
+    table-layout: fixed;
+    border-collapse: collapse; /* tableにborder-collapse適用 */
+}
+
+.table-cell {
+    display: table-cell;
+    width: 50%;
+    height: 115px;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    background: #FFF;
+    border: none;
+}
+
+/* ★修正③: 枠線ルールを厳密に再設定 */
+
+/* 1列目 (ラベル) の右側の線（中央の縦線）をすべて削除 */
+.table-cell.cell-left {
+    border-right: none;
+}
+
+/* 2列目 (金額/支払い方法の値) の左側の線（中央の縦線）をすべて削除 */
+.table-cell.cell-right {
+    border-left: none;
+}
+
+/* 上段と下段の間の横線（商品代金の下線）のみ残す */
+.table-row.top-row .table-cell {
+    border-bottom: 1px solid rgba(0, 0, 0, 1); 
+}
+
+/* ラベルセル (左側) の文字サイズ */
+.label-cell {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+/* 値セル (右側) の文字サイズ */
+.value-cell {
+    font-size: 24px; /* 商品代金 */
+    font-weight: 400;
+}
+.value-cell.payment-value {
+    font-size: 20px; /* 支払い方法 */
+}
+
+
+/* 購入するボタン */
+.purchase-btn {
+    width: 440px;
+    height: 50px;
+    background: rgba(255, 85, 85, 1); 
+    color: white; 
+    border: none;
+    border-radius: 5px;
+    font-size: 26px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px; 
+    margin-top: 40px; 
+    box-sizing: border-box;
+}
+
+/* ... (既存のレスポンシブコードは維持) ... */
