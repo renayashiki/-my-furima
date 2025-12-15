@@ -72,41 +72,41 @@ Route::post('/profile/setup', [ProfileSetupController::class, 'store'])
 // ---------------------------------------------
 // 🔐 ログイン後（verified 必須）
 // ---------------------------------------------
-Route::middleware(['auth', 'verified'])->group(function () {
+// Route::middleware(['auth', 'verified'])->group(function () {
 
-    // 検索フォームのエラー回避のため、ルートを仮定義★
-    // ListControllerを使用し、仮のindexメソッドを指すことで、既存のコントローラを利用します。
-    Route::get('/products/search', [ListController::class, 'index'])
-        ->name('products.search');
+// 検索フォームのエラー回避のため、ルートを仮定義★
+// ListControllerを使用し、仮のindexメソッドを指すことで、既存のコントローラを利用します。
+Route::get('/products/search', [ListController::class, 'index'])
+    ->name('products.search');
 
-    // マイページ
-    Route::get('/profile', [ProfileController::class, 'index'])
-        ->name('profile.index');
+// マイページ
+Route::get('/profile', [ProfileController::class, 'index'])
+    ->name('profile.index');
 
-    Route::get('/profile/edit', [EditController::class, 'edit'])
-        ->name('profile.edit');
+Route::get('/profile/edit', [EditController::class, 'edit'])
+    ->name('profile.edit');
 
-    Route::post('/profile/edit', [EditController::class, 'update'])
-        ->name('profile.update');
+Route::post('/profile/edit', [EditController::class, 'update'])
+    ->name('profile.update');
 
-    // 出品
-    Route::get('/products/create', [CreateController::class, 'create'])
-        ->name('products.create');
+// 出品
+Route::get('/products/create', [CreateController::class, 'create'])
+    ->name('products.create');
 
-    Route::post('/products', [CreateController::class, 'store'])
-        ->name('products.store');
+Route::post('/products', [CreateController::class, 'store'])
+    ->name('products.store');
 
-    // 購入
-    Route::get('/purchase/{id}', [PurchaseController::class, 'index'])
-        ->name('purchase.index');
+// 購入
+Route::get('/purchase/{id}', [PurchaseController::class, 'index'])
+    ->name('purchase.index');
 
-    Route::post('/purchase/pay', [PurchaseController::class, 'pay'])
-        ->name('purchase.pay');
+Route::post('/purchase/pay', [PurchaseController::class, 'pay'])
+    ->name('purchase.pay');
 
-    // 住所変更
-    Route::get('/address/edit', [AddressUpdateController::class, 'edit'])
-        ->name('address.edit');
+// 住所変更
+Route::get('/address/edit', [AddressUpdateController::class, 'edit'])
+    ->name('address.edit');
 
-    Route::post('/address/edit', [AddressUpdateController::class, 'update'])
-        ->name('address.update');
-});
+Route::post('/address/edit', [AddressUpdateController::class, 'update'])
+    ->name('address.update');
+// });
