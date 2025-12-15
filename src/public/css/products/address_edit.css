@@ -1,0 +1,186 @@
+/* products/address_edit.css */
+
+/* --------------------------------------
+    全体レイアウトと縮小調整
+    -------------------------------------- */
+.address-edit-container {
+    width: 100%;
+    /* ★修正②: フォーム全体の最大幅を広げ、横に伸ばす */
+    max-width: 700px; /* 500px から 700px へ */
+    
+    font-family: 'Inter', sans-serif; 
+    
+    /* コンテンツ全体を常に80%に縮小し、中央・上部に配置する */
+    position: absolute; 
+    top: 50px; 
+    left: 50%;
+    /* フォームの幅を広げたため、縮小率も微調整する可能性がありますが、まずは0.8を維持 */
+    transform: translateX(-50%) scale(0.8); 
+    
+    transform-origin: top center; 
+    
+    margin-top: 0; 
+
+    padding: 0 2px; 
+    box-sizing: border-box;
+}
+
+/* --------------------------------------
+    タイトル (H1) スタイル
+    -------------------------------------- */
+.page-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    
+    margin-top: 35px;
+    /* ★修正①: タイトルとフォームの間隔をさらに広げ、見本に近づける */
+    margin-bottom: 100px; /* 50px から 80px へ */
+}
+
+/* --------------------------------------
+    下部全幅エリア (フォームグループ)
+    -------------------------------------- */
+
+/* 郵便番号・住所・建物名の間隔を調整 */
+.form-group { 
+    margin-bottom: 55px; 
+}
+
+/* 項目名（ラベル） */
+.form-label.visible-label {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px; 
+    font-family: 'Inter', sans-serif; 
+}
+
+/* 入力欄 */
+.form-input { 
+    width: 100%;
+    height: auto; 
+    padding: 8px 15px; 
+    border: 1px solid rgba(95, 95, 95, 1); 
+    border-radius: 4px; 
+    box-sizing: border-box;
+    font-size: 16px; 
+    line-height: 1.5; 
+    font-family: 'Inter', sans-serif; 
+}
+
+/* --------------------------------------
+    更新ボタン (赤)
+    -------------------------------------- */
+.submit-btn {
+    width: 100%;
+    height: auto;
+    padding: 12px 0; 
+    background: rgba(255, 85, 85, 1); 
+    color: white; 
+    border: none;
+    border-radius: 4px; 
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 50px; 
+    margin-bottom: 50px; 
+    font-family: 'Inter', sans-serif; 
+}
+
+
+/* ★★★ コンテンツ全体の縮小率の再調整 (納まりの維持) ★★★ */
+
+@media (max-height: 850px) {
+    .address-edit-container {
+        /* max-widthを広げた影響で、高さが足りなくなる可能性があるため、
+           必要に応じてこの縮小率をさらに下げる必要がありますが、一旦0.8を維持 */
+        transform: translateX(-50%) scale(0.8);
+        transform-origin: top center; 
+    }
+}
+@media (max-height: 750px) {
+    .address-edit-container {
+        transform: translateX(-50%) scale(0.75);
+        transform-origin: top center;
+    }
+}
+@media (max-height: 680px) {
+    .address-edit-container {
+        transform: translateX(-50%) scale(0.70); 
+        transform-origin: top center;
+    }
+}
+@media (max-height: 650px) {
+    .address-edit-container {
+        transform: translateX(-50%) scale(0.65); 
+        transform-origin: top center;
+    }
+}
+@media (max-height: 620px) {
+    .address-edit-container {
+        transform: translateX(-50%) scale(0.60); 
+        transform-origin: top center;
+    }
+}
+
+@media (min-height: 851px) {
+    .address-edit-container {
+        transform: translateX(-50%) scale(0.8);
+        transform-origin: top center;
+    }
+}
+
+
+/* --------------------------------------
+    メディアクエリ (レスポンシブ対応: スマホ表示を想定)
+    -------------------------------------- */
+@media (max-width: 600px) {
+    .address-edit-container {
+        max-width: 100%;
+        transform: scale(1); 
+        position: static; 
+        top: auto;
+        left: auto;
+        margin: 0 auto; 
+    }
+    
+    .page-title {
+        margin-top: 20px; 
+        margin-bottom: 30px; 
+    }
+    
+    .form-group {
+        margin-bottom: 30px; 
+    }
+}
+
+/* ヘッダー検索欄の強制表示 (800px以下) */
+@media (max-width: 800px) {
+    .header-search-container {
+        display: flex !important; 
+        margin-left: 20px; 
+        flex-grow: 1;
+    }
+    
+    .header-search-container .search-form {
+        max-width: 200px;
+    }
+
+    .header-logo {
+        width: 180px; 
+        margin-left: -5px; 
+    }
+    
+    .header-logo svg {
+        width: 180px;
+    }
+
+    .header-nav {
+        padding-right: 0; 
+    }
+    
+    .header-list {
+        gap: 5px;
+    }
+}

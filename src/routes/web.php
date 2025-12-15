@@ -79,14 +79,16 @@ Route::post('/profile/setup', [ProfileSetupController::class, 'store'])
 Route::get('/products/search', [ListController::class, 'index'])
     ->name('products.search');
 
-// マイページ
+// マイページ(プロフィー画面)の表示
 Route::get('/profile', [ProfileController::class, 'index'])
     ->name('profile.index');
 
+//プロフィール編集画面
 Route::get('/profile/edit', [EditController::class, 'edit'])
     ->name('profile.edit');
 
-Route::post('/profile/edit', [EditController::class, 'update'])
+//プロフィール編集画面  更新処理
+Route::patch('/profile/edit', [EditController::class, 'update'])
     ->name('profile.update');
 
 // 出品
@@ -107,6 +109,6 @@ Route::post('/purchase/pay', [PurchaseController::class, 'pay'])
 Route::get('/address/edit', [AddressUpdateController::class, 'edit'])
     ->name('address.edit');
 
-Route::post('/address/edit', [AddressUpdateController::class, 'update'])
+Route::patch('/address/edit', [AddressUpdateController::class, 'update'])
     ->name('address.update');
 // });

@@ -1,0 +1,223 @@
+/* profile/edit.css */
+
+/* --------------------------------------
+    全体レイアウトと縮小調整
+    -------------------------------------- */
+/* ★クラス名を変更 profile-setup-container -> profile-edit-container */
+.profile-edit-container {
+    width: 100%;
+    max-width: 500px; 
+    
+    /* フォントを維持 */
+    font-family: 'Inter', sans-serif; 
+    
+    /* コンテンツ全体を常に80%に縮小し、中央・上部に配置する */
+    position: absolute; 
+    top: 50px; /* ヘッダーの下あたりに配置 */
+    left: 50%;
+    /* translate(-50%, 0) で中央寄せ、scale(0.8) で常時縮小 */
+    transform: translateX(-50%) scale(0.8); 
+    
+    /* 縮小の起点を維持 */
+    transform-origin: top center; 
+    
+    margin-top: 0; 
+
+    padding: 0 2px; 
+    box-sizing: border-box;
+}
+
+/* --------------------------------------
+    タイトル (H2) スタイル
+    -------------------------------------- */
+.page-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    
+    margin-top: 50px; 
+    margin-bottom: 30px; 
+}
+
+/* --------------------------------------
+    上部並列エリア: 丸枠と画像ボタン
+    -------------------------------------- */
+.side-by-side-container {
+    display: flex;
+    justify-content: flex-start; 
+    gap: 20px; 
+    align-items: center; 
+    margin-bottom: 0; 
+}
+
+/* --------------------------------------
+    丸枠 (image-preview) と ボタン
+    -------------------------------------- */
+.image-preview {
+    width: 150px;
+    height: 150px;
+    background: rgba(217, 217, 217, 1); 
+    border-radius: 50%; 
+    flex-shrink: 0;
+    margin: 0; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.file-input-hidden { display: none; }
+.file-select-btn {
+    display: inline-block;
+    width: 130px; 
+    height: 40px; 
+    line-height: 36px; 
+    padding: 0;
+    
+    background: rgba(255, 255, 255, 1);
+    color: rgba(255, 85, 85, 1); 
+    border: 2px solid rgba(255, 85, 85, 1); 
+    border-radius: 10px; 
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Inter', sans-serif; 
+}
+
+/* --------------------------------------
+    下部全幅エリア (ユーザー名以下)
+    -------------------------------------- */
+.form-group.user-name-group { margin-top: 25px; margin-bottom: 30px; }
+.form-group { margin-bottom: 30px; }
+
+/* 項目名（ラベル） */
+.form-label.visible-label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px; 
+    font-family: 'Inter', sans-serif; 
+}
+
+/* 入力欄 */
+.form-input { 
+    width: 100%;
+    height: auto; 
+    padding: 10px 15px; 
+    border: 1px solid rgba(95, 95, 95, 1); 
+    border-radius: 4px; 
+    box-sizing: border-box;
+    font-size: 16px; 
+    line-height: 1.5; 
+    font-family: 'Inter', sans-serif; 
+}
+
+/* --------------------------------------
+    更新ボタン (赤)
+    -------------------------------------- */
+.submit-btn {
+    width: 100%;
+    height: auto;
+    padding: 8px 0; 
+    background: rgba(255, 85, 85, 1); 
+    color: white; 
+    border: none;
+    border-radius: 4px; 
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px; 
+    margin-bottom: 50px; 
+    font-family: 'Inter', sans-serif; 
+}
+
+
+/* ★★★ コンテンツ全体の縮小率の再調整 (納まりの維持) ★★★ */
+/* ★クラス名を変更 profile-setup-container -> profile-edit-container */
+@media (max-height: 850px) {
+    .profile-edit-container {
+        transform: translateX(-50%) scale(0.8);
+        transform-origin: top center; 
+    }
+}
+@media (max-height: 750px) {
+    .profile-edit-container {
+        transform: translateX(-50%) scale(0.75);
+        transform-origin: top center;
+    }
+}
+@media (max-height: 680px) {
+    .profile-edit-container {
+        transform: translateX(-50%) scale(0.70); 
+        transform-origin: top center;
+    }
+}
+@media (max-height: 650px) {
+    .profile-edit-container {
+        transform: translateX(-50%) scale(0.65); 
+        transform-origin: top center;
+    }
+}
+@media (max-height: 620px) {
+    .profile-edit-container {
+        transform: translateX(-50%) scale(0.60); 
+        transform-origin: top center;
+    }
+}
+
+
+@media (min-height: 851px) {
+    .profile-edit-container {
+        transform: translateX(-50%) scale(0.8);
+        transform-origin: top center;
+    }
+}
+
+
+/* --------------------------------------
+    メディアクエリ (レスポンシブ対応: スマホ表示を想定)
+    -------------------------------------- */
+@media (max-width: 600px) {
+    /* ... (他のスマホ向けCSSは変更なし) ... */
+    
+    .form-group.user-name-group {
+        margin-top: 0;
+    }
+}
+
+/* スマホ/タブレットサイズでは、共通ヘッダーの検索欄非表示設定を上書きして表示する */
+/* 共通CSSの @media (max-width: 800px) の設定を上書き */
+@media (max-width: 800px) {
+    /* ★修正②: 検索欄をレスポンシブで表示する */
+    .header-search-container {
+        display: flex !important; /* app-common.css の display: none を上書き */
+        
+        /* 適切な位置を確保するため、左マージンを調整 */
+        margin-left: 20px; 
+        flex-grow: 1;
+    }
+    
+    /* 検索フォームの幅を調整 */
+    .header-search-container .search-form {
+        max-width: 200px;
+    }
+
+    /* ロゴの横幅をさらに狭くして、検索欄のためのスペースを確保 */
+    .header-logo {
+        width: 180px; 
+        margin-left: -5px; 
+    }
+    
+    .header-logo svg {
+        width: 180px;
+    }
+
+    /* 右側のナビゲーションを詰める */
+    .header-nav {
+        padding-right: 0; 
+    }
+    
+    .header-list {
+        gap: 5px;
+    }
+}
