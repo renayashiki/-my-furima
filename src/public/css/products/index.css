@@ -1,60 +1,97 @@
+/* src/public/css/products/index.css */
+
 /* --------------------------------------
     タブナビゲーションエリア (上部空間)
-    ★★★ 修正1/2: ボタンゾーンの完全復元（安定デザインの維持） ★★★
+    ★★★ 修正: ボタンゾーンの安定デザインを完全に維持し、機能を追加 ★★★
     -------------------------------------- */
-.tab-radio { display: none; }
+.tab-radio { display: none; } /* ラジオボタン自体は非表示 */
+
 .tab-navigation-visual {
-    width: 100%; max-width: 1512px; margin: 0 auto;
-    position: relative; height: 77px; z-index: 10;
+    width: 100%; 
+    max-width: 1512px; 
+    margin: 0 auto;
+    position: relative; 
+    height: 77px; 
+    z-index: 10;
 }
+
 .tab-switch {
-    display: flex; height: 100%; align-items: flex-end; 
-    padding-left: 129px; box-sizing: border-box;
-    gap: 26px; padding-bottom: 5px; 
+    display: flex;
+    height: 100%;
+    align-items: flex-end; 
+    padding-left: 129px; 
+    box-sizing: border-box;
+    gap: 26px; 
+    padding-bottom: 5px; 
     background-color: white; 
 }
+
 .tab-link {
-    width: 155px; height: 40px;
-    display: flex; align-items: center; justify-content: flex-end; 
-    padding-right: 15px; cursor: pointer;
-    font-weight: 700; /* 安定コードの太字を維持 */
+    /* ★★★ 安定コードを厳守 ★★★ */
+    width: 155px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+    padding-right: 15px; 
+    cursor: pointer;
+    font-weight: 700; 
     font-size: 18px;
-    position: static; color: rgba(95, 95, 95, 1); 
+    position: static; 
+    color: rgba(95, 95, 95, 1); /* 非アクティブ時の色 */
     z-index: 11; 
-    text-decoration: none; /* ★破綻の原因となる下線を確実に削除 */
-    border-bottom: none; /* 余計なボーダーを削除 */
+    text-decoration: none; 
+    /* 破綻の原因となる border-bottom: none; は不要なため削除 */
 }
-.tab-link.tab-recommend { 
-    color: rgba(255, 0, 0, 1); 
-    /* アクティブなタブに赤線がある場合は、ここで border-bottom を追加してください。
-       現在、安定コードには赤線がないため、追加しません。 */
+
+/* ★★★ タブが選択されたとき、文字色を赤にする (JSなし) ★★★ */
+#tab-recommend:checked ~ .tab-navigation-visual .tab-recommend { 
+    color: rgba(255, 0, 0, 1); /* アクティブ時の色 */
 }
-.tab-link.tab-mylist { color: rgba(95, 95, 95, 1); }
+/* 非アクティブなタブは、デフォルトの .tab-link の色 (95, 95, 95, 1) が適用されます */
+
+#tab-mylist:checked ~ .tab-navigation-visual .tab-mylist { 
+    color: rgba(255, 0, 0, 1); /* アクティブ時の色 */
+}
+
 
 .tab-divider {
-    width: 100%; height: 2px;
+    width: 100%;
+    height: 2px;
     background: rgba(95, 95, 95, 1); 
-    position: absolute; bottom: 0; left: 0;
+    position: absolute;
+    bottom: 0; 
+    left: 0;
 }
 
 /* --------------------------------------
     商品一覧 (コンテンツ部分)
-    ★★★ 修正2/2: 余白設定の維持と中央配置の実現 ★★★
+    ★★★ 修正: タブ切り替え制御と余白・中央配置の維持 ★★★
     -------------------------------------- */
 
 .products-container {
     width: 100%;
     max-width: 1374.5px; 
     margin: 40px auto 0 auto; /* 上部余白 40px を維持 */
-    padding: 0; box-sizing: border-box;
-    position: relative; z-index: 5; 
+    padding: 0; 
+    box-sizing: border-box;
+    position: relative;
+    z-index: 5; 
 }
 
-.product-list { display: grid; padding: 0; box-sizing: border-box; }
-#recommend-content { display: grid; }
+/* ★★★ タブコンテンツの表示/非表示制御 (JSなし) ★★★ */
+#recommend-content { display: none; }
+#mylist-content { display: none; }
+
+#tab-recommend:checked ~ .products-container #recommend-content { display: grid; }
+#tab-mylist:checked ~ .products-container #mylist-content { display: grid; }
+
+
+/* 商品グリッドのレイアウト設定 (余白と中央配置を維持) */
+.product-list { padding: 0; box-sizing: border-box; }
 
 .product-grid {
-    /* 横幅 200px に固定 (アイテム幅の維持) */
+    /* 4列表示、各アイテム幅 200px を維持 */
     grid-template-columns: repeat(4, 200px); 
     
     /* 横方向の余白 (画像間) 40px を維持 */
@@ -63,15 +100,15 @@
     /* 縦方向の余白 (行間) 50px を維持 */
     row-gap: 50px; 
     
-    /* 中央配置を実現: padding-left を削除し、margin: 0 auto を適用 */
+    /* 中央配置を実現 */
     padding-left: 0; 
     margin: 0 auto; 
     
-    /* 中央寄せを確実にするため、明示的にグリッドの幅をコンテンツ幅に設定 */
-    /* 200px * 4 + 40px * 3 = 920px */
+    /* 中央寄せを確実にするための固定幅を維持 */
     width: 920px; 
 }
 
+/* 商品アイテムのデザイン (維持) */
 .product-item-wrapper {
     /* 縦長になるよう、幅 200px / 高さ 225px に固定 */
     width: 200px; 
@@ -87,8 +124,9 @@
 }
 
 .product-item {
-    text-decoration: none; /* リンクの紫の下線を削除 */
-    cursor: default; display: block; 
+    text-decoration: none; /* 下線なしを維持 */
+    cursor: default; 
+    display: block; 
 }
 
 .product-image-box {
@@ -110,5 +148,5 @@
     box-sizing: border-box; background-color: white; 
 }
 .product-name-box .product-name-text {
-    font-size: 18px; color: black; margin: 0; text-decoration: none; /* 商品名の紫の下線を削除 */
+    font-size: 18px; color: black; margin: 0; text-decoration: none; /* 下線なしを維持 */
 }
