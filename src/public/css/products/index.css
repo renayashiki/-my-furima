@@ -3,67 +3,68 @@
 /* --------------------------------------
     タブナビゲーションエリア (上部空間)
     -------------------------------------- */
-/* content-wrapper は特にスタイル不要 */
 
-.tab-navigation-area {
+.tab-radio {
+    display: none;
+}
+
+/* ★★★ 修正1/3: タブのデザイン復元 (崩れ解消) ★★★ */
+.tab-navigation-visual {
     width: 100%; 
     max-width: 1512px; 
-    margin: 0 auto; 
-    position: relative;
+    margin: 0 auto;
+    position: relative; /* 子要素の absolute の基準となる */
+    /* 指定値: height: 77px を維持 */
     height: 77px; 
+    z-index: 10;
 }
 
 .tab-switch {
     display: flex;
-    height: 100%; 
-    align-items: flex-end; 
+    height: 100%;
+    align-items: flex-end; /* ボタンを下端（区切り線側）に配置 */
     
     padding-left: 129px; 
     box-sizing: border-box;
+    /* タブ間の隙間: 26px */
     gap: 26px; 
-    padding-bottom: 5px; 
-}
-
-/* ラジオボタン本体は非表示 */
-.tab-radio {
-    /* ★修正: ラジオボタンを position: absolute で tab-navigation-area 直下に移動させ、
-       products-container と兄弟関係になるようにします。 */
-    display: none;
+    padding-bottom: 5px; /* 下線との極狭の余白 */
 }
 
 /* ラベル（タブ本体）の共通スタイル */
 .tab-link {
+    /* デザイン値の復元 */
     width: 155px;
     height: 40px;
     display: flex;
     align-items: center;
-    justify-content: flex-end; 
+    justify-content: flex-end; /* 文字を右寄せ */
     padding-right: 15px; 
     
     cursor: pointer;
-    margin-right: 0; 
-    
-    font-family: 'Inter', sans-serif; 
     font-weight: 700; 
     font-size: 18px;
-    line-height: 1; 
-    background: transparent;
-    border: none; 
+    
+    /* position: static に戻すことで、フレックスボックス内で正しく配置される */
+    position: static; 
     
     color: rgba(95, 95, 95, 1); 
+    z-index: 11; 
 }
 
-/* ラジオボタンがチェックされたとき、対応するラベル（タブ）の文字色を赤色に設定 */
-.tab-radio:checked + .tab-link {
+/* タブの色制御 (ここでは CSSの兄弟セレクタが使えないため、初期状態のみ再現) */
+.tab-link.tab-recommend {
     color: rgba(255, 0, 0, 1);
 }
-
+.tab-link.tab-mylist {
+    color: rgba(95, 95, 95, 1);
+}
 
 /* 区切り線 */
 .tab-divider {
     width: 100%;
-    height: 0;
-    border-top: 2px solid rgba(95, 95, 95, 1);
+    height: 2px;
+    background: rgba(95, 95, 95, 1); 
     position: absolute;
     bottom: 0; 
     left: 0;
@@ -75,74 +76,39 @@
     -------------------------------------- */
 
 .products-container {
+    /* ★★★ 修正2/3: コンテナの幅を見直し、グリッドをコンパクトに配置 ★★★ */
     width: 100%;
+    /* 4列 (290px * 4) + 隙間 (30px * 3) + 左余白 (69px) = 1160 + 90 + 69 = 1319px。
+       最大幅をこのサイズより少し大きく設定し、左右の余白を確保します。
+       以前の 1374.5px を維持し、アイテムサイズとグリッド余白でサイズ感を調整します。*/
     max-width: 1374.5px; 
-    /* tab-navigation-area の直下にあるため、margin-top で空間を調整 */
+    
+    /* tab-navigation-visual の後に来るため、margin-top を調整 */
     margin: 50px auto 0 auto; 
     padding: 0;
     box-sizing: border-box;
     position: relative;
+    z-index: 5; 
 }
 
 .product-list {
-    display: none; /* 初期は全てのリストを非表示 */
+    /* HTML構造を変更したため、コンテンツを一旦常時表示にします。
+       タブ切り替え機能はJavaScriptに移行する必要があります。
+       現在は「おすすめ」のみが表示される状態を再現します。 */
+    display: none; 
     padding: 0; 
     box-sizing: border-box;
 }
 
-/* ★★★ 修正箇所：コンテンツ表示のセレクタを修正 ★★★ */
-/* ラジオボタンの親要素は tab-navigation-area の中にあるため、products-container は兄弟要素ではない。
-   HTML構造を変更したため、セレクタ全体を変更します。*/
-
-/* おすすめリストの表示 */
-#tab-recommend:checked ~ .tab-divider ~ .products-container #recommend-content {
+/* コンテンツ表示のセレクタ: HTML構造変更により、セレクタを簡素化 */
+/* products-container の直前にあるのは tab-navigation-visual なので、
+   コンテンツ表示は JavaScript で行う必要がありますが、
+   ここでは「おすすめ」を初期表示します。*/
+#recommend-content {
     display: grid;
 }
 
-/* マイリストの表示 */
-#tab-mylist:checked ~ .tab-divider ~ .products-container #mylist-content {
-    display: grid;
-}
-
-/* ★補足: 念のため、今回は以下のCSSで動作することを前提とします。
-   もし上記で映らない場合は、 tab-navigation-area の外で products-container の前に
-   input を移動させるか、JavaScriptを利用する必要があります。
-
-   しかし、今回はHTML構造を変更し、products-containerをinputの兄弟要素に近づけました。
-   content-wrapper を使って products-container を tab-navigation-area の下に配置し、
-   input, label, tab-divider, products-container がすべて content-wrapper の子要素になるようにしました。
-   
-   この新しい構造では、以下のセレクタが機能するはずです。*/
-
-/* Tab-switch の中の input から見て、products-container は遠い兄弟要素になるため、
-   tab-navigation-area を経由しないセレクタを試します。*/
-
-/* input と products-container が同じ親要素 (content-wrapper) を持つ兄弟になったため、このセレクタで表示されるはずです。 */
-#tab-recommend:checked ~ .tab-navigation-area ~ .products-container #recommend-content {
-    display: grid;
-}
-#tab-mylist:checked ~ .tab-navigation-area ~ .products-container #mylist-content {
-    display: grid;
-}
-
-/* 上記のセレクタを適用するため、再度CSS全体を構成します。*/
-
-/* --------------------------------------
-    商品一覧 (コンテンツ切り替え部分)
-    -------------------------------------- */
-/* ... 省略 ... */
-
-/* ★★★ 最終的な表示制御セレクタ ★★★ */
-.content-wrapper > #tab-recommend:checked ~ .products-container #recommend-content {
-    display: grid;
-}
-.content-wrapper > #tab-mylist:checked ~ .products-container #mylist-content {
-    display: grid;
-}
-
-/* 複雑なセレクタを避けるため、今回は HTML に input を直接 products-container の前に配置し、
-   products-container には直接グリッドを表示する CSS を適用する形式に戻します。*/
-
+/* ★★★ 修正3/3: 商品グリッドのサイズ・余白の調整 ★★★ */
 .product-grid {
     grid-template-columns: repeat(4, 290px); 
     gap: 30px; 
@@ -151,11 +117,51 @@
 }
 
 .product-item-wrapper {
+    /* サイズは 290px / 320px を維持 */
     width: 290px;
-    height: 320px;
+    height: 320px; 
+    
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2); 
     border-radius: 4px;
     background-color: white; 
     position: relative; 
 }
-/* ... 以降の商品要素CSSは変更なし ... */
+
+/* 不要要素のスタイル削除 */
+.product-item {
+    text-decoration: none; 
+    cursor: default; 
+    display: block; 
+}
+
+/* 商品画像枠の構成 */
+.product-image-box {
+    width: 100%; 
+    height: 281.27px; 
+    background: rgba(217, 217, 217, 1); 
+    border-radius: 4px 4px 0 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+}
+.product-image-box .product-image-text {
+    font-size: 40px;
+    color: black; 
+}
+
+.product-name-box {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px; 
+    box-sizing: border-box;
+    background-color: white; 
+    border-radius: 0 0 4px 4px; 
+}
+.product-name-box .product-name-text {
+    font-size: 25px;
+    color: black; 
+    margin: 0; 
+}
