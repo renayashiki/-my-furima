@@ -2,9 +2,8 @@
 
 /* --------------------------------------
     タブナビゲーションエリア (上部空間)
-    ★★★ 修正: ボタンゾーンの安定デザインを完全に維持し、機能を追加 ★★★
     -------------------------------------- */
-.tab-radio { display: none; } /* ラジオボタン自体は非表示 */
+.tab-radio { display: none; } 
 
 .tab-navigation-visual {
     width: 100%; 
@@ -27,7 +26,6 @@
 }
 
 .tab-link {
-    /* ★★★ 安定コードを厳守 ★★★ */
     width: 155px;
     height: 40px;
     display: flex;
@@ -38,22 +36,19 @@
     font-weight: 700; 
     font-size: 18px;
     position: static; 
-    color: rgba(95, 95, 95, 1); /* 非アクティブ時の色 */
+    color: rgba(95, 95, 95, 1); 
     z-index: 11; 
     text-decoration: none; 
-    /* 破綻の原因となる border-bottom: none; は不要なため削除 */
 }
 
-/* ★★★ タブが選択されたとき、文字色を赤にする (JSなし) ★★★ */
+/* タブのアクティブ状態 */
 #tab-recommend:checked ~ .tab-navigation-visual .tab-recommend { 
-    color: rgba(255, 0, 0, 1); /* アクティブ時の色 */
+    color: rgba(255, 0, 0, 1); 
 }
-/* 非アクティブなタブは、デフォルトの .tab-link の色 (95, 95, 95, 1) が適用されます */
 
 #tab-mylist:checked ~ .tab-navigation-visual .tab-mylist { 
-    color: rgba(255, 0, 0, 1); /* アクティブ時の色 */
+    color: rgba(255, 0, 0, 1); 
 }
-
 
 .tab-divider {
     width: 100%;
@@ -66,57 +61,51 @@
 
 /* --------------------------------------
     商品一覧 (コンテンツ部分)
-    ★★★ 修正: タブ切り替え制御と余白・中央配置の維持 ★★★
     -------------------------------------- */
 
 .products-container {
     width: 100%;
-    max-width: 1374.5px; 
-    margin: 40px auto 0 auto; /* 上部余白 40px を維持 */
+    max-width: 1512px;
+    margin: 40px auto 0 auto; 
     padding: 0; 
     box-sizing: border-box;
     position: relative;
     z-index: 5; 
 }
 
-/* ★★★ タブコンテンツの表示/非表示制御 (JSなし) ★★★ */
+/* タブコンテンツの表示/非表示制御 */
 #recommend-content { display: none; }
 #mylist-content { display: none; }
 
-#tab-recommend:checked ~ .products-container #recommend-content { display: grid; }
-#tab-mylist:checked ~ .products-container #mylist-content { display: grid; }
-
-
-/* 商品グリッドのレイアウト設定 (余白と中央配置を維持) */
-.product-list { padding: 0; box-sizing: border-box; }
-
-.product-grid {
-    /* 4列表示、各アイテム幅 200px を維持 */
-    grid-template-columns: repeat(4, 200px); 
-    
-    /* 横方向の余白 (画像間) 40px を維持 */
-    column-gap: 40px; 
-    
-    /* 縦方向の余白 (行間) 50px を維持 */
-    row-gap: 50px; 
-    
-    /* 中央配置を実現 */
-    padding-left: 0; 
-    margin: 0 auto; 
-    
-    /* 中央寄せを確実にするための固定幅を維持 */
-    width: 920px; 
+#tab-recommend:checked ~ .products-container #recommend-content { 
+    display: grid; 
 }
+#tab-mylist:checked ~ .products-container #mylist-content { 
+    display: grid; 
+}
+
+
+/* 商品グリッドのレイアウト設定 (デフォルト: 4列) */
+.product-list { 
+    padding: 0; 
+    box-sizing: border-box;
+    display: grid; /* .product-list に display: grid; を適用 */
+    
+    grid-template-columns: repeat(4, 200px); 
+    column-gap: 40px; 
+    row-gap: 50px; 
+    width: 920px; 
+    margin: 0 auto; 
+}
+
+
+
 
 /* 商品アイテムのデザイン (維持) */
 .product-item-wrapper {
-    /* 縦長になるよう、幅 200px / 高さ 225px に固定 */
     width: 200px; 
     height: 225px; 
-    
-    /* ぼかしの削除を維持 */
     box-shadow: none; 
-    
     border-radius: 4px;
     background-color: white; 
     position: relative; 
@@ -124,7 +113,7 @@
 }
 
 .product-item {
-    text-decoration: none; /* 下線なしを維持 */
+    text-decoration: none; 
     cursor: default; 
     display: block; 
 }
@@ -148,5 +137,110 @@
     box-sizing: border-box; background-color: white; 
 }
 .product-name-box .product-name-text {
-    font-size: 18px; color: black; margin: 0; text-decoration: none; /* 下線なしを維持 */
+    font-size: 18px; color: black; margin: 0; text-decoration: none; 
+}
+
+
+/* ================================
+    レスポンシブ対応 (商品一覧)
+    ★4列を維持するために、サイズと間隔を縮小する
+    ================================ */
+
+/* 画面幅 1200px以下: 4列を維持し、サイズを縮小 */
+@media (max-width: 1200px) {
+    .product-list {
+        /* アイテム幅を縮小 (200px -> 180px) */
+        grid-template-columns: repeat(4, 180px);
+        /* 間隔を詰める (40px -> 30px) */
+        column-gap: 30px; 
+        /* 最大幅を再計算 (4*180 + 3*30 = 810px) */
+        width: 810px; 
+    }
+
+    .product-item-wrapper {
+        width: 180px; 
+        height: 205px; 
+    }
+    .product-image-box {
+        height: 180px;
+    }
+}
+
+/* 画面幅 900px以下: 4列を維持し、さらにサイズを縮小 */
+@media (max-width: 900px) {
+    .product-list {
+        /* アイテム幅をさらに縮小 (180px -> 150px) */
+        grid-template-columns: repeat(4, 150px); 
+        /* 間隔をさらに詰める (30px -> 20px) */
+        column-gap: 20px; 
+        /* 最大幅を再計算 (4*150 + 3*20 = 660px) */
+        width: 660px; 
+    }
+    
+    .product-item-wrapper {
+        width: 150px;
+        height: 175px; 
+    }
+    .product-image-box {
+        height: 150px;
+    }
+    .product-name-box .product-name-text {
+        font-size: 16px;
+    }
+}
+
+/* 画面幅 700px以下: 4列を維持し、最小限のサイズに */
+@media (max-width: 700px) {
+    .tab-switch {
+        padding-left: 20px; /* タブの左寄せを調整 */
+        gap: 15px;
+    }
+    
+    .product-list {
+        /* アイテム幅を最小化 (150px -> 120px) */
+        grid-template-columns: repeat(4, 120px); 
+        column-gap: 15px; 
+        /* 最大幅を再計算 (4*120 + 3*15 = 525px) */
+        width: 525px; 
+    }
+    
+    .product-item-wrapper {
+        width: 120px;
+        height: 140px;
+    }
+    .product-image-box {
+        height: 120px;
+    }
+    .product-image-box .product-image-text {
+        font-size: 20px;
+    }
+    .product-name-box .product-name-text {
+        font-size: 14px;
+    }
+}
+
+/* 画面幅 550px以下: 画面幅にフィットさせる */
+@media (max-width: 550px) {
+    .tab-switch {
+        padding-left: 10px;
+        gap: 10px;
+    }
+
+    .product-list {
+        /* 4列を維持し、間隔を均等に */
+        grid-template-columns: repeat(4, 1fr); /* 4列を均等幅にする */
+        column-gap: 5px;
+        width: 98%; 
+        padding: 0 1%;
+        box-sizing: border-box;
+    }
+    
+    .product-item-wrapper {
+        width: 100%; /* 親要素の幅いっぱいに広げる */
+        height: auto; 
+    }
+    .product-image-box {
+        /* 縦横比を調整 */
+        height: 100px; 
+    }
 }
