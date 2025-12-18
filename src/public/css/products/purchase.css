@@ -255,75 +255,76 @@
     margin-top: 50px;
 }
 
-/* --- コンテンツ全体の縮小率の再調整 --- */
-@media (max-height: 850px) {
-    .address-edit-container {
-        transform: translateX(-50%) scale(0.8);
-        transform-origin: top center;
-    }
-}
+/* =========================================================
+    レスポンシブ対応：フル画面(1515px〜)は一切変えず、
+    それ以下の幅になった時だけ全体を収める設定
+   ========================================================= */
 
-@media (max-height: 750px) {
-    .address-edit-container {
-        transform: translateX(-50%) scale(0.75);
-        transform-origin: top center;
-    }
-}
-
-@media (max-height: 680px) {
-    .address-edit-container {
-        transform: translateX(-50%) scale(0.70);
-        transform-origin: top center;
-    }
-}
-
-@media (max-height: 650px) {
-    .address-edit-container {
-        transform: translateX(-50%) scale(0.65);
-        transform-origin: top center;
-    }
-}
-
-@media (max-height: 620px) {
-    .address-edit-container { transform: translateX(-50%) scale(0.60);
-        transform-origin: top center;}
-    }
-
-@media (min-height: 851px) {
-    .address-edit-container {
-        transform: translateX(-50%) scale(0.8);
-        transform-origin: top center;
-    }
-}
-
-/* --- メディアクエリ (スマホ対応) --- */
-@media (max-width: 600px) {
-    .address-edit-container {
+/* 画面幅が1515pxを下回った瞬間から適用開始 */
+@media (max-width: 1515px) {
+    .purchase-container {
         max-width: 100%;
-        transform: scale(1); position: static;
-        margin: 0 auto;
-    }
-
-    .page-title {
-        margin-top: 20px;
-        margin-bottom: 30px;
-    }
-    
-    .form-group {
-        margin-bottom: 30px;
-    }
-    
-    .purchase-form {
-        flex-direction: column;
         padding: 0 20px;
     }
-    
-    .left-content-wrapper, .right-summary-wrapper {
-        width: 100%;
+
+    .purchase-form {
+        padding: 0;
+        /* 右側の突き抜けを防止するため、固定幅を解除 */
+        display: flex;
+        justify-content: space-between;
     }
-    
+
+    /* 左側：画面幅に合わせて縮むように設定 */
+    .left-content-wrapper {
+        width: 60%; /* 固定幅 885px を解除 */
+        min-width: 300px;
+        margin-right: 20px;
+    }
+
+    /* 右側：画面幅に合わせて縮むように設定 */
+    .right-summary-wrapper {
+        width: 35%; /* 固定幅 440px を解除 */
+        min-width: 280px;
+    }
+
+    /* 内部要素（表やボタン）を可変幅の親に追従させる */
+    .summary-table-wrapper,
+    .purchase-btn {
+        width: 100%; /* 固定幅 400px を解除 */
+    }
+
+    /* 区切り線の突き抜け防止 */
     .divider-line {
-        width: 90%;
-        left: 5%;
+        width: 100%;
+        left: 0;
+    }
+}
+
+/* 画面幅がさらに狭い場合（タブレット・スマホ等） */
+@media (max-width: 1000px) {
+    .product-name { font-size: 22px; }
+    .product-price-large { font-size: 20px; }
+    .label-cell, .value-cell { font-size: 16px; }
+    .purchase-btn { font-size: 18px; }
+    
+    .product-image-box {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* スマホサイズ：文字が潰れすぎる場合はここで縦並びに */
+@media (max-width: 768px) {
+    .purchase-form {
+        flex-direction: column;
+        align-items: center;
+    }
+    .left-content-wrapper,
+    .right-summary-wrapper {
+        width: 100%;
+        margin-right: 0;
+    }
+    .right-summary-wrapper {
+        padding-top: 50px;
     }
 }
