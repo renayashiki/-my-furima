@@ -256,11 +256,10 @@
 }
 
 /* =========================================================
-    レスポンシブ対応：フル画面(1515px〜)は一切変えず、
-    それ以下の幅になった時だけ全体を収める設定
+    レスポンシブ対応：ここから末尾までを貼り換え
    ========================================================= */
 
-/* 画面幅が1515pxを下回った瞬間から適用開始 */
+/* 画面幅が1515pxを下回った瞬間から適用 */
 @media (max-width: 1515px) {
     .purchase-container {
         max-width: 100%;
@@ -269,51 +268,106 @@
 
     .purchase-form {
         padding: 0;
-        /* 右側の突き抜けを防止するため、固定幅を解除 */
         display: flex;
         justify-content: space-between;
     }
 
-    /* 左側：画面幅に合わせて縮むように設定 */
+    /* --- 左右の幅を比率（％）に変更 --- */
     .left-content-wrapper {
-        width: 60%; /* 固定幅 885px を解除 */
-        min-width: 300px;
+        width: 60%; 
         margin-right: 20px;
+        position: relative;
     }
 
-    /* 右側：画面幅に合わせて縮むように設定 */
     .right-summary-wrapper {
-        width: 35%; /* 固定幅 440px を解除 */
-        min-width: 280px;
+        width: 38%; /* 表に余裕を持たせるため35%から38%へ微増 */
+        padding-top: 65px;
     }
 
-    /* 内部要素（表やボタン）を可変幅の親に追従させる */
+    /* --- 右側サマリー表：1行に収めるための重要調整 --- */
     .summary-table-wrapper,
     .purchase-btn {
-        width: 100%; /* 固定幅 400px を解除 */
+        width: 100%;
     }
 
-    /* 区切り線の突き抜け防止 */
+    .table-cell.cell-left {
+        width: 35%;          /* 左側の項目名をさらに詰め、35%に縮小 */
+        padding-left: 8px;   /* 余白を最小限に */
+    }
+
+    .table-cell.cell-right {
+        width: 65% !important; /* 右側の値を65%に拡大して1行分の幅を確保 */
+        padding-right: 8px;  /* 余白を最小限に */
+        text-align: right;
+    }
+
+    .label-cell {
+        font-size: 16px;
+        white-space: nowrap; /* 項目名（支払い方法など）の改行を禁止 */
+    }
+
+    .value-cell {
+        font-size: 17px;     /* フォントサイズをわずかに調整 */
+        white-space: nowrap; /* 値（コンビニ払いなど）の改行を禁止 */
+        overflow: visible;   /* はみ出しても隠さず表示 */
+    }
+
+    .value-cell.payment-value {
+        font-size: 16px;     /* 文字数が多い支払い方法欄を優先的に調整 */
+    }
+
+    /* --- 各ブロックの配置調整 --- */
     .divider-line {
+        position: static; 
         width: 100%;
-        left: 0;
+        margin: 40px 0;
+    }
+
+    .product-info-block {
+        padding: 40px 0 0 20px;
+    }
+
+    .payment-method-block {
+        padding: 0 0 0 20px;
+    }
+
+    .shipping-address-block {
+        margin-top: 0;
+        padding: 0 0 0 20px;
+        position: relative;
+    }
+
+    .shipping-address-block .block-title {
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
+
+    .address-change-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: auto;
+        height: auto;
+        font-size: 16px;
+    }
+
+    .current-address-postcode,
+    .current-address-detail {
+        margin-left: 40px;
     }
 }
 
-/* 画面幅がさらに狭い場合（タブレット・スマホ等） */
+/* 画面幅 1000px 以下の微調整 */
 @media (max-width: 1000px) {
     .product-name { font-size: 22px; }
     .product-price-large { font-size: 20px; }
-    .label-cell, .value-cell { font-size: 16px; }
-    .purchase-btn { font-size: 18px; }
+    .product-image-box { width: 140px; height: 140px; }
     
-    .product-image-box {
-        width: 120px;
-        height: 120px;
-    }
+    /* 1000px以下でも表の1行維持を死守 */
+    .label-cell, .value-cell { font-size: 14px; }
 }
 
-/* スマホサイズ：文字が潰れすぎる場合はここで縦並びに */
+/* 768px 以下：スマホ・タブレット縦並び */
 @media (max-width: 768px) {
     .purchase-form {
         flex-direction: column;
@@ -325,6 +379,6 @@
         margin-right: 0;
     }
     .right-summary-wrapper {
-        padding-top: 50px;
+        padding-top: 40px;
     }
 }
