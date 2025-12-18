@@ -19,14 +19,6 @@ use App\Http\Controllers\Product\AddressUpdateController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Profile\EditController;
 
-// ---------------------------------------------
-// 🔓 未認証でも閲覧できるページ
-// ---------------------------------------------
-Route::get('/products', [ListController::class, 'index'])
-    ->name('products.index');
-
-Route::get('/products/{id}', [DetailController::class, 'show'])
-    ->name('products.show');
 
 // ---------------------------------------------
 // 🔐 認証まわり（Fortifyオーバーライド）
@@ -112,3 +104,13 @@ Route::get('/address/edit', [AddressUpdateController::class, 'edit'])
 Route::patch('/address/edit', [AddressUpdateController::class, 'update'])
     ->name('address.update');
 // });
+
+
+// ---------------------------------------------
+// 🔓 未認証でも閲覧できるページ
+// ---------------------------------------------
+Route::get('/products', [ListController::class, 'index'])
+    ->name('products.index');
+
+Route::get('/products/{id}', [DetailController::class, 'show'])
+    ->name('products.show');

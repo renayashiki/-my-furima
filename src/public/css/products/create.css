@@ -1,0 +1,259 @@
+/* 基本設定 */
+.create-container {
+    width: 100%;
+    max-width: 680px; /* Figmaのメインコンテンツ幅 */
+    margin: 40px auto;
+    font-family: 'Inter', sans-serif;
+    color: rgba(0, 0, 0, 1);
+}
+
+.page-title {
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-wrapper {
+    margin-top: 60px;
+}
+
+.section-header-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: rgba(95, 95, 95, 1);
+    margin-bottom: 2px;
+}
+
+.divider-line {
+    width: 100%;
+    height: 1px;
+    background: rgba(95, 95, 95, 1);
+}
+
+.form-group {
+    margin-bottom: 40px;
+    margin-top: 30px;
+}
+
+.section-label {
+    display: block;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    margin-top: 20px;
+}
+
+/* 商品画像アップロード枠 */
+.image-drop-box {
+    width: 100%;
+    height: 150px;
+    border: 1px dashed rgba(95, 95, 95, 1);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+}
+
+.image-select-btn {
+    width: 158px;
+    height: 40px;
+    border: 2px solid rgba(255, 85, 85, 1);
+    border-radius: 10px;
+    color: rgba(255, 86, 85, 1);;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* カテゴリータグ */
+.category-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 21px;
+    margin-top: 30px;
+    margin-left: 16px;
+}
+
+.category-tag {
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.tag-text {
+    display: inline-block;
+    padding: 2px 15px;
+    border: 2px solid rgba(255, 86, 85, 1);
+    border-radius: 100px; /* カプセル型 */
+    color: rgba(255, 86, 85, 1);
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+}
+
+.category-tag input:checked + .tag-text {
+    background: rgba(255, 86, 85, 1);
+    color: #fff;
+}
+
+/* カスタムセレクトボックス（購入画面流用） */
+.custom-select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.custom-select-box {
+    width: 100%;
+    height: 45px;
+    border: 1px solid rgba(95, 95, 95, 1);
+    border-radius: 4px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.selected-text {
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    color: rgba(95, 95, 95, 1);
+}
+
+.arrow-icon {
+    font-size: 18px;
+    color: rgba(95, 95, 95, 1);
+}
+
+.select-options-list {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(99, 103, 105, 1);
+    border: 1.5px solid rgba(177, 177, 177, 1);
+    border-radius: 5px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 100;
+}
+
+.select-options-list.active {
+    display: block;
+}
+
+.option-item {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    cursor: pointer;
+    color: rgba(234, 234, 234, 1);
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+}
+
+.option-item:hover {
+    background: rgba(85, 153, 235, 1);
+}
+
+.option-item::before {
+    content: "✔";
+    color: rgba(255, 255, 255, 1);
+    margin-right: 10px;
+    visibility: hidden;
+}
+
+.option-item:hover::before {
+    visibility: visible;
+}
+
+/* 入力フィールド */
+.input-text, .input-textarea {
+    width: 100%;
+    border: 1px solid rgba(95, 95, 95, 1);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 0;
+}
+
+.input-text {
+    height: 45px;
+}
+
+.input-textarea {
+    height: 125px;
+    resize: none;
+}
+
+/* 販売価格 */
+.price-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency-symbol {
+    position: absolute;
+    left: 10px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.price-input {
+    padding-left: 40px !important;
+}
+
+
+/* --- 前半部分は変更なしのため省略（そのままお使いください） --- */
+
+/* 出品ボタン */
+.submit-btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* ボタンを中央に配置 */
+}
+
+/* --- 出品ボタン (ここだけ差し替えてください) --- */
+.submit-btn {
+    display: block;          /* ブロック要素にして中央寄せを有効にする */
+    width: 100%;             /* 親要素（680px）と同じ幅にする */
+    max-width: 680px;        /* 上のform-groupと完全に一致させる */
+    margin: 60px auto 100px; /* 左右を auto にすることで確実に中央配置 */
+    /* 以下の装飾は一切変えていません */
+    height: 60px;
+    background: rgba(255, 85, 85, 1);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 26px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .create-container {
+        padding: 0 20px;
+    }
+    .section-label, .section-header-title {
+        font-size: 20px;
+    }
+    .submit-btn {
+        width: calc(100% - 40px); /* 左右のパディング分を引く */
+        font-size: 20px;
+    }
+}
